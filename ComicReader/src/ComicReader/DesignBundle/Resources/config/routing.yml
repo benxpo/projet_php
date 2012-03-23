@@ -1,0 +1,3 @@
+ComicReader_accueil:
+    pattern: /
+    defaults: { _controller: ComicReaderDesignBundle:Default:index }

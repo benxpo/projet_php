@@ -33,6 +33,8 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_home' => true,
        '_configurator_step' => true,
        '_configurator_final' => true,
+       'ComicReader_accueil' => true,
+       'comicreader_admin_default_index' => true,
     );
 
     /**
@@ -154,5 +156,15 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function get_configurator_finalRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/_configurator/final',  ),));
+    }
+
+    private function getComicReader_accueilRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'ComicReader\\DesignBundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/ComicReader/',  ),));
+    }
+
+    private function getcomicreader_admin_default_indexRouteInfo()
+    {
+        return array(array (  0 => 'name',), array (  '_controller' => 'ComicReader\\AdminBundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'name',  ),  1 =>   array (    0 => 'text',    1 => '/hello',  ),));
     }
 }

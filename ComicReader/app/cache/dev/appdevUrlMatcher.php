@@ -143,6 +143,19 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // ComicReader_accueil
+        if (rtrim($pathinfo, '/') === '/ComicReader') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'ComicReader_accueil');
+            }
+            return array (  '_controller' => 'ComicReader\\DesignBundle\\Controller\\DefaultController::indexAction',  '_route' => 'ComicReader_accueil',);
+        }
+
+        // comicreader_admin_default_index
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'ComicReader\\AdminBundle\\Controller\\DefaultController::indexAction',)), array('_route' => 'comicreader_admin_default_index'));
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }
