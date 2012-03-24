@@ -42,6 +42,29 @@ class Book
      */
     private $Validated;
 
+    /**
+     * @var $FK_User
+     *
+     * @ORM\ManyToOne(targetEntity="T_User")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     */
+    private $FK_User;
+
+    /**
+     * @var $FK_Author
+     *
+     * @ORM\ManyToOne(targetEntity="Author")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     */
+    private $FK_Author;
+
+    /**
+     * @var $FK_Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     */
+    private $FK_Category;
 
     /**
      * Get id
@@ -112,10 +135,40 @@ class Book
     {
         return $this->Validated;
     }
+
+    public function setFK_User($comment)
+    {
+        $this->FK_User = $comment;
+    }
+    public function getFK_User()
+    {
+        return $this->FK_User;
+    }
+    public function setFK_Category($comment)
+    {
+        $this->FK_Category = $comment;
+    }
+    public function getFK_Category()
+    {
+        return $this->FK_Category;
+    }
+    public function setFK_Author($comment)
+    {
+        $this->FK_Author = $comment;
+    }
+    public function getFK_Author()
+    {
+        return $this->FK_Author;
+    }
+
     public function __construct()
     {
 	$this->Date =  new \DateTime('now');
 	$this->Validated = False;
 	$this->ServerPath = "";
+
+	$this->FK_User = null;
+	$this->FK_Author = null;
+	$this->FK_Category = null;
     }
 }

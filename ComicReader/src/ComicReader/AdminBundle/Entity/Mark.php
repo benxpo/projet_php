@@ -41,6 +41,20 @@ class Mark
      * @ORM\Column(name="Comment", type="string", length=1000, nullable=true)
      */
     private $Comment;
+    /**
+     * @var $FK_User
+     *
+     * @ORM\ManyToOne(targetEntity="T_User")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     */
+    private $FK_User;
+    /**
+     * @var $FK_Book
+     *
+     * @ORM\ManyToOne(targetEntity="Book")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     */
+    private $FK_Book;
 
 
     /**
@@ -112,10 +126,30 @@ class Mark
     {
         return $this->Comment;
     }
+
+    public function setFK_User($comment)
+    {
+        $this->FK_User = $comment;
+    }
+    public function getFK_User()
+    {
+        return $this->FK_User;
+    }
+    public function setFK_Book($comment)
+    {
+        $this->FK_Book = $comment;
+    }
+    public function getFK_Book()
+    {
+        return $this->FK_Book;
+    }
     public function __construct()
     {
 	$this->Date =  new \DateTime('now');
 	$this->Mark = 0;
 	$this->Comment = "";
+
+    	$this->FK_User = null;
+	$this->FK_Book = null;
     }
 }
