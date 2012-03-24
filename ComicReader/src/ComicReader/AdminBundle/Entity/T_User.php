@@ -42,6 +42,19 @@ class T_User
      */
     private $Password;
 
+    /**
+     * @var boolean $is_Admin
+     *
+     * @ORM\Column(name="is_Admin", type="boolean")
+     */
+    private $is_Admin;
+
+    /**
+     * @var boolean $is_Mod
+     *
+     * @ORM\Column(name="is_Mod", type="boolean")
+     */
+    private $is_Mod;
 
     /**
      * Get id
@@ -112,10 +125,34 @@ class T_User
     {
         return $this->Password;
     }
+
+
+    public function setis_Mod($password)
+    {
+        $this->is_Mod = $password;
+    }
+
+    public function getis_Mod()
+    {
+        return $this->is_Mod;
+    }
+
+    public function setis_Admin($password)
+    {
+        $this->is_Admin = $password;
+    }
+
+    public function getis_Admin()
+    {
+        return $this->is_Admin;
+    }
+
     public function __construct()
     {
 	$this->RegistrationDate =  new \DateTime('now');
 	$this->Login = "";
 	$this->Password = "";
+	$this->is_Admin = false;
+	$this->is_Mod = false;
     }
 }
