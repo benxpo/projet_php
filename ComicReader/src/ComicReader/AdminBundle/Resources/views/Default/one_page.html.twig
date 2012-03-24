@@ -1,7 +1,6 @@
 
 {% for page in pages %}
         <div id="{{ page.id }}" class="comic_image_box" >
-	    <!--<img src="{{ asset('bundles/books/' ~ page.path) }}" alt="" />-->
-            {{ page.path }}
+	    <img src="{{ asset('bundles/books/' ~ page.path) }}" alt="" />
         </div>
 {% endfor %}

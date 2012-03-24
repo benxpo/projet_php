@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
-{
+{   
     /**
      * @Route("/hello/{name}")
      * @Template()
@@ -18,16 +18,16 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/reader")
+     * @Route("/reader/{bookid}")
      * @Template()
      */
-    public function readerAction()
+    public function readerAction($bookid)
     {
         // FOR TESTS
         $book = "GLO_c106";
         
         $pages = array();
-        for ($i=1;$i<40;$i++)
+        for ($i=1;$i<3;$i++)
         {
             if ($i < 10)
                 $path = sprintf("%s/%s_p0%d.png", $book, $book, $i);
@@ -38,7 +38,8 @@ class DefaultController extends Controller
         }
         
         return $this->render('ComicReaderAdminBundle:Default:reader.html.twig',
-                             array('pages' => $pages));
+                             array('bookid' => $bookid,
+                                   'pages' => $pages));
     }
     
     /**
@@ -50,18 +51,27 @@ class DefaultController extends Controller
         // FOR TESTS
         $book = "GLO_c106";
         
-        $i = intval($lastpageid) + 1;
-        if ($i < 10)
-            $path = sprintf("%s/%s_p0%d.png", $book, $book, $i);
-        else
-            $path = sprintf("%s/%s_p%d.png", $book, $book, $i);
+        $session  = $this->get("session");
+        
+        if ($session->get('lastPageId') != $lastpageid + 1 ||
+            $session->get('lastPageIdTime') + 10 <= time())
+        {
+            $id = intval($lastpageid) + 1;
+            if ($id < 10)
+                $path = sprintf("%s/%s_p0%d.png", $book, $book, $id);
+            else
+                $path = sprintf("%s/%s_p%d.png", $book, $book, $id);
+            $page = array('id' => $id, 'path' => $path);
             
-        $page = array('id' => intval($lastpageid) + 1,
-                       'path' => $path);
+            $pages = array($page);
+            
+            $session->set('lastPageId', $id);
+            $session->set('lastPageIdTime', time());
         
-        $pages = array($page);
-        
-        return $this->render('ComicReaderAdminBundle:Default:one_page.html.twig',
-                             array("pages" => $pages));
+            return $this->render('ComicReaderAdminBundle:Default:one_page.html.twig',
+                                 array("pages" => $pages));
+            
+        }
+        return $this->render('ComicReaderAdminBundle:Default:empty.html.twig');
     }
 }
