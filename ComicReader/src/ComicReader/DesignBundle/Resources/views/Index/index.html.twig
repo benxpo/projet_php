@@ -1,9 +1,82 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Bienvenue sur ComicReader !</title>
-    </head>
-    <body style="text-aligne:center;">
-<img alt="ComicReader" src="{{ asset('bundles/comicReaderdesign/images/ban.jpg') }}" />
-    </body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/index.css') }}">
+<title>Bienvenue sur ComicReader</title>
+</head>
+<body>
+  <div id="main">
+
+	<div id="ban"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" /></div>
+
+	<div id="accueil">Accueil</div>
+	<div id="liste">Liste</div>
+	<div id="ajouter">Ajouter</div>
+	<div id="recherche">
+	  <input value="Rechercher" size="22" maxlength="255" onFocus="this.value=''"/>
+          </input>
+          <button type="button" onclick="">Rechercher</button> 
+	</div>
+	<div class="clear"></div>
+
+
+	<div id="contenu">
+	  <div class="hasard">
+	    <div class="hasardTitre">Au hasard</div>
+	    <div class="hasardNom">NOM</div>
+	    <div class="hasardNote">Note</div>
+	    <div class="hasardImage">Image</div>
+	    <div class="hasardAuteur">Auteur</div>
+	    <div class="hasardPseudo">^_^ Pseudo</div>
+	  </div>
+	  <div class="onrecherche">
+	    <div class="onrechercheTitre">On recherche</div>
+	    <div class="onrechercheNumero">1</div>
+	    <div class="onrechercheNumero">2</div>
+	    <div class="onrechercheNumero">3</div>
+	    <div class="onrechercheNumero">4</div>
+	    <div class="onrechercheNumero">5</div>
+	  </div>
+	  <div class="top5">
+	    <div class="top5Titre">TOP 5</div>
+	    <div class="top5Numero">1</div>
+	    <div class="top5Numero">2</div>
+	    <div class="top5Numero">3</div>
+	    <div class="top5Numero">4</div>
+	    <div class="top5Numero">5</div>
+	  </div>
+	  <div class="sortie">
+	    <div class="sortieTitre">Les dernieres sorties</div>
+	    <div class="sortiePremier">
+	      <div class="sortiePremierImage">image</div>
+	      <div class="sortiePremierNom">NOM</div>
+	      <div class="sortiePremierNote">Note</div>
+	      <div class="sortiePremierAuteur">Auteur</div>
+	      <div class="sortiePremierPseudo">^_^ Pseudo</div>
+	    </div>
+	    <div class="sortiePremier">
+	      <div class="sortiePremierImage">image</div>
+	      <div class="sortiePremierNom">NOM</div>
+	      <div class="sortiePremierNote">Note</div>
+	      <div class="sortiePremierAuteur">Auteur</div>
+	      <div class="sortiePremierPseudo">^_^ Pseudo</div>
+	    </div>
+	    <div class="sortiePremier">
+	      <div class="sortiePremierImage">image</div>
+	      <div class="sortiePremierNom">NOM</div>
+	      <div class="sortiePremierNote">Note</div>
+	      <div class="sortiePremierAuteur">Auteur</div>
+	      <div class="sortiePremierPseudo">^_^ Pseudo</div>
+	    </div>
+	  </div>
+	  <div class="clear"></div>
+	  <div id="news">
+	    <div id="newsTitre">Dernieres News</div>
+	    <div id="newsContenu">21-02-2012 : orem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices nisl sit amet libero vestibulum augue placerat eu tempus elit dictum. Donec ullamcorper ornare ipsum vitae semper. Curabitur mollis molestie accumsan. Maecenas ut nisi i !</div>
+	  </div>
+	</div>
+  </div>
+</body>
 </html>
+
