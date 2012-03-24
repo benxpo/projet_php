@@ -49,12 +49,7 @@ class Book
      */
     private $Title;
 
-    /**
-     * @var string $ServerPath
-     *
-     * @ORM\Column(name="Server_Path", type="string", length=255)
-     */
-    private $ServerPath;
+
     /**
      * @var boolean $Validated
      *
