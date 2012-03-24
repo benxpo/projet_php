@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class T_UserRepository extends EntityRepository
 {
+    public function authentificate($login, $password)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('u')
+            ->from('ComicReaderAdminBundle:T_User', 'u')
+            ->where('u.Login = :login')
+            ->andWhere('u.Password = :password')
+            ->setParameter('login', $login)
+            ->setParameter('password', $password);
+    
+        return $qb->getQuery()->getResult() != null;
+    }
 }
