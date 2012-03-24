@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookRepository extends EntityRepository
 {
-    public function findAllValidated($value)
+    public function findAllValidated()
     {
         $qb = $this->_em->createQueryBuilder();
     
@@ -25,7 +25,7 @@ class BookRepository extends EntityRepository
     }
     
     
-    public function findAllNotValidated($value)
+    public function findAllNotValidated()
     {
         $qb = $this->_em->createQueryBuilder();
     
