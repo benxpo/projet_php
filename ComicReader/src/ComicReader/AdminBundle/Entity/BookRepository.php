@@ -12,6 +12,32 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookRepository extends EntityRepository
 {
+    public function findAllValidated($value)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('b')
+            ->from('ComicReaderAdminBundle:Book', 'b')
+            ->where('b.Validated >= :validate')
+            ->setParameter('validate', 1);
+    
+        return $qb->getQuery()->getResult();
+    }
+    
+    
+    public function findAllNotValidated($value)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('b')
+            ->from('ComicReaderAdminBundle:Book', 'b')
+            ->where('b.Validated = :validate')
+            ->setParameter('validate', 0);
+    
+        return $qb->getQuery()->getResult();
+    }
+    
+    
     public function searchTitle($value)
     {
         $qb = $this->_em->createQueryBuilder();
