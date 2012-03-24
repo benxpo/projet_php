@@ -25,7 +25,7 @@ class DefaultController extends Controller
 	$em = $this->getDoctrine()->getEntityManager();
 	$em->persist($t);
 	$em->flush();
-	exit;
+	exit
 
     }
 }

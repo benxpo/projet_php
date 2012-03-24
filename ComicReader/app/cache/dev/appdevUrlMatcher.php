@@ -152,8 +152,8 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // comicreader_admin_default_index
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'ComicReader\\AdminBundle\\Controller\\DefaultController::indexAction',)), array('_route' => 'comicreader_admin_default_index'));
+        if ($pathinfo === '/admin') {
+            return array (  '_controller' => 'ComicReader\\AdminBundle\\Controller\\DefaultController::indexAction',  '_route' => 'comicreader_admin_default_index',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

@@ -1,0 +1,14 @@
+[parameters]
+    database_driver="pdo_mysql"
+    database_host="localhost"
+    database_port=""
+    database_name="ComicReader"
+    database_user="root"
+    database_password="azerty123A"
+    mailer_transport="smtp"
+    mailer_host="localhost"
+    mailer_user=""
+    mailer_password=""
+    locale="en"
+    secret="10ebcf3ba7796c5ef06aa1c84aabd7c24"
+

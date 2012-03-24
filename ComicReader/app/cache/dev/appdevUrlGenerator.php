@@ -165,6 +165,6 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getcomicreader_admin_default_indexRouteInfo()
     {
-        return array(array (  0 => 'name',), array (  '_controller' => 'ComicReader\\AdminBundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'name',  ),  1 =>   array (    0 => 'text',    1 => '/hello',  ),));
+        return array(array (), array (  '_controller' => 'ComicReader\\AdminBundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin',  ),));
     }
 }
