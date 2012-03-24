@@ -9,23 +9,41 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/admin")
+     * @Route("/hello/{name}")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($name)
     {
-	$t = new T_Right();
-	$t->setName("Admin");
-	$t->setV(1);
-	$t->setR(1);
-	$t->setD(1);
-	$t->setU(1);
-	echo "création admin : " . $t->getName();
-
-	$em = $this->getDoctrine()->getEntityManager();
-	$em->persist($t);
-	$em->flush();
-	exit;
-
+        return array('name' => $name);
+    }
+    
+    /**
+     * @Route("/reader")
+     * @Template()
+     */
+    public function readerAction()
+    {
+        $pages = array();
+        for ($i=0;$i<40;$i++)
+        {
+            array_push($pages, array('id' => $i, 'path' => "toto $i"));
+        }
+        
+        return $this->render('ComicReaderAdminBundle:Default:reader.html.twig',
+                             array('pages' => $pages));
+    }
+    
+    /**
+     * @Route("/nextpage/{bookid}/{lastpageid}")
+     * @Template()
+     */
+    public function nextPageAction($bookid, $lastpageid)
+    {
+        $page = array('id' => intval($lastpageid) + 1,
+                       'path' => "toto $lastpageid");
+        $pages = array($page);
+        
+        return $this->render('ComicReaderAdminBundle:Default:one_page.html.twig',
+                             array("pages" => $pages));
     }
 }

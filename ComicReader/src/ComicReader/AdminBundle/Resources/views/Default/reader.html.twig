@@ -1,0 +1,49 @@
+<html>
+    <head>
+	<title>Comic Reader</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript">
+$(document).ready(
+    function()
+    {
+        var busy = false;
+	function last_msg_funtion()
+	{
+            var ID=$(".comic_image_box:last").attr("id");
+            $('div#last_image_loader').html('<img src="images/bigLoader.gif">');
+            $.post("NextPage/42/"+ID,
+                function(data)
+                {
+                    if (data != "")
+                    {
+                        $(".comic_image_box:last").after(data);
+                    }
+                
+                    $('div#last_image_loader').empty();
+                });
+	};
+	    
+	$(window).scroll(
+	    function()
+	    {
+		if (busy == false && $(window).scrollTop() == $(document).height() - $(window).height())
+		{
+                    busy = true;
+		    last_msg_funtion();
+                    busy = false;
+		}
+	    });
+    });
+        </script>
+    </head>
+    <body>
+{% for page in pages %}
+        <div id="{{ page.id }}" class="comic_image_box" >
+            {{ page.path }}
+            <img src="{{ asset('bundles/comicreaderreader/images/GLO_c106_p01.png') }}" alt="" />
+        </div>
+{% endfor %}
+
+        <div id="last_image_loader"></div>
+    </body>
+</html>
