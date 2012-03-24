@@ -11,7 +11,7 @@ $(document).ready(
 	{
             var ID=$(".comic_image_box:last").attr("id");
             $('div#last_image_loader').html('<img src="images/bigLoader.gif">');
-            $.post("NextPage/42/"+ID,
+            $.post("nextpage/42/"+ID,
                 function(data)
                 {
                     if (data != "")
@@ -39,8 +39,8 @@ $(document).ready(
     <body>
 {% for page in pages %}
         <div id="{{ page.id }}" class="comic_image_box" >
-            {{ page.path }}
-            <img src="{{ asset('bundles/comicreaderreader/images/GLO_c106_p01.png') }}" alt="" />
+	    <!--<img src="{{ asset('bundles/books/' ~ page.path) }}" alt="" />-->
+	    {{ page.path }}
         </div>
 {% endfor %}
 
