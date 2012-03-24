@@ -1,0 +1,9 @@
+<div class="book_list">
+{% for book in books %}
+    <div class="book_item" >
+	<h3>{{ book.title }}</h3>
+    </div>
+{% else %}
+    <em>No books found</em>
+{% endfor %}
+</div>
