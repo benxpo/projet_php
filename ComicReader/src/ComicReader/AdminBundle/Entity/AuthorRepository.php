@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class AuthorRepository extends EntityRepository
 {
+    public function searchAuthor($value)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('a')
+            ->from('ComicReaderAdminBundle:Author', 'a')
+            ->where('a.Name LIKE :value')
+            ->setParameter('value', '%'.$value.'%');
+    
+        return $qb->getQuery()->getResult();
+    }
 }

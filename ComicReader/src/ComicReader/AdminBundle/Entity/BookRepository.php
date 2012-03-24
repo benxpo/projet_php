@@ -12,4 +12,45 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookRepository extends EntityRepository
 {
+    public function searchTitle($value)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('b')
+            ->from('ComicReaderAdminBundle:Book', 'b')
+            ->where('b.Validated >= :validate')
+            ->andWhere('b.Title LIKE :value')
+            ->setParameter('validate', 1)
+            ->setParameter('value', '%'.$value.'%');
+    
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function searchDescription($value)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('b')
+            ->from('ComicReaderAdminBundle:Book', 'b')
+            ->where('b.Validated >= :validate')
+            ->andWhere('b.Description LIKE :value')
+            ->setParameter('validate', 1)
+            ->setParameter('value', '%'.$value.'%');
+    
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function searchAuthor($authorid)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('b')
+            ->from('ComicReaderAdminBundle:Book', 'b')
+            ->where('b.Validated >= :validate')
+            ->andWhere('b.FK_Author = :value')
+            ->setParameter('validate', 1)
+            ->setParameter('value', $authorid);
+    
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -76,7 +76,7 @@ class DefaultController extends Controller
         return $this->render('ComicReaderAdminBundle:Default:empty.html.twig');
     }
     
-            
+
     /**
      * @Route("/search/{value}/")
      * @Template()
@@ -90,7 +90,7 @@ class DefaultController extends Controller
 
         $authorbooks = $this->getDoctrine()
                          ->getEntityManager()
-                         ->getRepository('ComicReaderAdminBundle:Book')
+                         ->getRepository('ComicReaderAdminBundle:Author')
                          ->searchAuthor($value);
 
         $descriptionbooks = $this->getDoctrine()
@@ -102,6 +102,28 @@ class DefaultController extends Controller
                              array('titlebooks' => $titlebooks,
                                    'authorbooks' => $authorbooks,
                                    'descriptionbooks' => $descriptionbooks));
+    }
+    
+    
+    /**
+     * @Route("/author/{authorid}")
+     * @Template()
+     */
+    public function authorAction($authorid)
+    {
+        $author = $this->getDoctrine()
+                         ->getEntityManager()
+                         ->getRepository('ComicReaderAdminBundle:Author')
+                         ->find($authorid);
+                         
+        $books = $this->getDoctrine()
+                         ->getEntityManager()
+                         ->getRepository('ComicReaderAdminBundle:Book')
+                         ->searchAuthor($authorid);
+                
+        return $this->render('ComicReaderAdminBundle:Search:author.html.twig',
+                             array('authorname' => $author->getName(),
+                                   'books' => $books));
     }
     
     /**
