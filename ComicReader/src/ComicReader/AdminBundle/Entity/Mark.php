@@ -42,17 +42,15 @@ class Mark
      */
     private $Comment;
     /**
-     * @var $FK_User
+     * @var integer $FK_User
      *
-     * @ORM\ManyToOne(targetEntity="T_User")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\Column(name="FK_User", type="integer")
      */
     private $FK_User;
     /**
-     * @var $FK_Book
+     * @var integer $FK_Book
      *
-     * @ORM\ManyToOne(targetEntity="Book")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\Column(name="FK_Book", type="integer")
      */
     private $FK_Book;
 
@@ -149,7 +147,7 @@ class Mark
 	$this->Mark = 0;
 	$this->Comment = "";
 
-    	$this->FK_User = null;
-	$this->FK_Book = null;
+    	$this->FK_User = 0;
+	$this->FK_Book = 0;
     }
 }
