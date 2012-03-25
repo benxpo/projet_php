@@ -263,7 +263,7 @@ class AdminController extends Controller
 	return $this->render('ComicReaderAdminBundle:Admin:addU.html.twig',
 			array('form' => $form->createView(),));
     }
-	/**
+    /**
      * @Route("/modU/{id}")
      * @Template
      */
