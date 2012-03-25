@@ -1,7 +1,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>Menu de l'interface d'administration</title>
+		<title>Validation</title>
 	</head>
 	<style>
 		a {outline: 0;}
@@ -34,12 +34,22 @@ width : 175px;
 		">
 
 <div id="header" style="
-	width : 840px;
-	height: 150px;
 	background: #fff;
-	margin : auto;
+	margin: 0 auto 0 auto;
+	font-size: 50px;
+	overflow: hidden;
+	padding: 20px;
+	width: 800px;
+	text-align : center;
+	padding-bottom:30px;
+	border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-webkit-border-bottom-right-radius: 10px;
 	">
-	logo
+	ComicReader<br/>Administration
 </div>
 
 <div style="
@@ -62,12 +72,12 @@ width : 175px;
 
 
 <table border="2" align="center" width="700" cellspacing="1px" >
-<tr><td><b>Name</b></td><td><b>validation</b></td><td><b>suppression</b></td></tr>
+<tr><td><b>Nom</b></td><td><b>Validation</b></td><td><b>Suppression</b></td></tr>
 {% for c in tab %}
 <tr><td>
 {{c.Title}}</td><td>
-<td><a href="{{ asset('app_dev.php/valB/' ~ c.Id) }}">-validation-</a></td>
-<td><a href="{{ asset('app_dev.php/delB/' ~ c.Id) }}">-suppression-</a></td></tr>
+<td><a href="{{ asset('app_dev.php/valB/' ~ c.Id) }}">Valider</a></td>
+<td><a href="{{ asset('app_dev.php/delB/' ~ c.Id) }}">Supprimer</a></td></tr>
 {%endfor %}
 
 </table>

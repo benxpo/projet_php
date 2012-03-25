@@ -1,7 +1,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>Menu de l'interface d'administration</title>
+		<title>Interface utilisateur</title>
 	</head>
 	<style>
 		a {outline: 0;}
@@ -35,12 +35,22 @@ width : 175px;
 		">
 
 <div id="header" style="
-	width : 840px;
-	height: 150px;
 	background: #fff;
-	margin : auto;
+	margin: 0 auto 0 auto;
+	font-size: 50px;
+	overflow: hidden;
+	padding: 20px;
+	width: 800px;
+	text-align : center;
+	padding-bottom:30px;
+	border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-webkit-border-bottom-right-radius: 10px;
 	">
-	logo
+	ComicReader<br/>Administration
 </div>
 
 <div style="
@@ -70,9 +80,9 @@ width : 175px;
 {% for c in tab %}
 <tr><td>
 {{c.Id}}</td><td>
-{{c.Login}}</td><td>
-{{c.is_Admin}}</td><td>
-{{c.is_Mod}}</td>
+{{c.Login}}</td><td>&nbsp;
+{{c.is_Admin}}&nbsp;</td><td>&nbsp;
+{{c.is_Mod}}&nbsp;</td>
 <td><a href="{{ asset('app_dev.php/modU/' ~ c.Id) }}">Modifier</a></td>
 <td><a href="{{ asset('app_dev.php/delU/' ~ c.Id) }}">Supprimer</a></td>
 </tr>
