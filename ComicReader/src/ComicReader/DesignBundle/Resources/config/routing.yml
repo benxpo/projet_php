@@ -8,5 +8,5 @@ ComicReader_livre:
     pattern: /livre
     defaults: { _controller: ComicReaderDesignBundle:Default:index, name:"livre" }
 ComicReader_liste:
-    pattern: /liste
-    defaults: { _controller: ComicReaderDesignBundle:Default:index, name:"liste" }
+    pattern: ../search
+
