@@ -68,5 +68,13 @@ $(document).ready(
 
 	    <div id="last_image_loader"></div>
 	</div>
+	<div>
+		<form action="{{ asset('app_dev.php/addComent') }}" method="post" enctype="multipart/form-data">
+			{{ form_widget(form) }}
+
+			<input type="submit" />
+		</form>
+	</div>
+		
     </body>
 </html>

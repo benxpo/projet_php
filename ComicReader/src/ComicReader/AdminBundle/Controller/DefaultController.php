@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use MyApp\FilmothequeBundle\Form\SearchForm;
+use ComicReader\AdminBundle\Entity\Mark;
 
 class DefaultController extends Controller
 {
@@ -14,7 +15,7 @@ class DefaultController extends Controller
      * @Route("/reader/{bookid}")
      * @Template()
      */
-    public function readerAction($bookid)
+    public function readerAction($bookid, Request $request)
     {
         $book = $this->getDoctrine()
                         ->getEntityManager()
@@ -39,12 +40,43 @@ class DefaultController extends Controller
 
             array_push($pages, array('id' => $i, 'path' => $path));
         }
+
+	/* Commentaires */
+
+	$form = $this->createFormBuilder(array())
+		->add('login', 'text')
+		->add('mark', 'text')
+		->add('comment', 'textarea')
+		->getForm();
+
+	if ($request->getMethod() == 'POST')
+	{
+		$form->bindRequest($request);
+		$data = $form->getData();
+		
+		$login = htmlentities($date['login']);
+		$mark = htmlentities($date['mark']);
+		$comment = htmlentities($date['comment']);
+
+		//ajout du comment ici
+		$com = new Mark();
+		$com->setComment($comment);
+		$com->setMark($mark);
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($com);
+		$em->flush();
+	}
+	
+	/* Fin Commentaires */
+
         
         return $this->render('ComicReaderAdminBundle:Default:reader.html.twig',
                              array('bookid' => $bookid,
                                    'booktitle' => $book->getTitle(),
                                    'bookauthor' => $author->getName(),
-                                   'pages' => $pages));
+                                   'pages' => $pages,
+				   'form' => $form->createView()));
     }
     
     
