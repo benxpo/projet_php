@@ -1,9 +1,32 @@
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/design.css') }}">
+	<title>{{ authorname }}</title>
+    </head>
+    <body>
+      <div id="main">
+	<div id="ban"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" /></div>
 
-<div class="book_list">
-    <h2>{{ authorname }}</h2>
-{% for book in books %}
-    <div class="book_item" >
-	<h5>{{ book.title }}</h5>
-    </div>
-{% endfor %}
-</div>
+	<div id="accueil">Accueil</div>
+	<div id="liste">Liste</div>
+	<div id="ajouter">Ajouter</div>
+	<div id="search">
+	    <form method="POST" action="{{ asset('search_redirect.php') }} ">
+	      <input name="search" value="" size="22" maxlength="255" onFocus="this.value=''" />
+	      <input type="submit" value="Search" />
+	    </form>
+	</div>
+	<div class="clear"></div>
+	<div class="book_list">
+	    <h2>{{ authorname }}</h2>
+	{% for book in books %}
+	    <div class="book_item" >
+		<h5>{{ book.title }}</h5>
+		<a href={{ asset('app_dev.php/reader/' ~ book.id) }} >Read this book</a>
+	    </div>
+	{% endfor %}
+	</div>
+      </div>
+    </body>
+</html>
