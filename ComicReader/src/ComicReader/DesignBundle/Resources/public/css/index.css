@@ -92,7 +92,7 @@ div.hasard {
 div.hasardTitre {
 	font-size: 1.5em;
 	margin-top:13px;
-	margin-bottom:15px;
+	margin-bottom:30px;
 	font-family:arial;
 	color: #1234c9;
 	text-shadow: 1px 1px 1px #333;
@@ -124,7 +124,8 @@ div.hasardPseudo {
 	}
 div.top5Numero {
 	width:100%;
-	height:15%;
+	height:10%;
+	text-align:left;
 	}
 div.videok{
 	height:0px;

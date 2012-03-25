@@ -80,6 +80,7 @@ div#retour {
 	color:blue;
 	}
 div.livre {
+	background-color:#FFFFFF;
 	border-width: 1px; border-style: solid; border-color: #000000;
 	margin-left:auto;
 	margin-right:auto;
