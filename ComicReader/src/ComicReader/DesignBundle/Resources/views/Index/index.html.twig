@@ -26,11 +26,30 @@
 	<div id="contenu">
 	  <div class="hasard">
 	    <div class="hasardTitre">Au hasard</div>
-	    <div class="hasardNom">NOM</div>
+<!--
+{% if books is empty %}
+		<em>Aucun livre</em>
+{% else %}
+{% set fjb = random(books) %}
+	      <div class="livreNom"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></div>
+{% for star in fjb.stars %}
+		<img class="hasardNote" src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
+{% else %}
+		<em>No mark</em>
+{% endfor %}
+
+	    <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
+    	    <div class="hasardImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '01.png') }}') no-repeat top center;"></div>
+	    </a>
+	      <div class="hasardAuteur"><u>Draw by</u> : {{ fjb.author.Name }}</div>
+	      <div class="hasardPseudo"><u>Uploaded by</u> : {{ fjb.Uploader.Login}}</div>
+{% endif %}
+-->
+<!--	    <div class="hasardNom">NOM</div>
 	    <div class="hasardNote">Note</div>
 	    <div class="hasardImage">Image</div>
 	    <div class="hasardAuteur">Auteur</div>
-	    <div class="hasardPseudo">^_^ Pseudo</div>
+	    <div class="hasardPseudo">^_^ Pseudo</div>-->
 	  </div>
 	  <div class="hasard">
 	    <div class="hasardTitre">On recherche</div>
