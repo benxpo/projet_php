@@ -148,3 +148,8 @@ div.livreDesc {
 	border-width: 1px; border-style: solid; border-color: #000000;
 	margin-bottom: -1px;
 }
+
+.book_comments
+{
+    position: fixed;
+}

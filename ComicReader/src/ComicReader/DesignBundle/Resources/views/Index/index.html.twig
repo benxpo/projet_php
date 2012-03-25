@@ -37,7 +37,7 @@
 	      <a href={{ asset('app_dev.php/reader/' ~ random.book.id) }} >
 		<div class="randomThumbnail" style="background: url('{{ asset('bundles/books/' ~ random.book.ServerPath ~ '1.png') }}') no-repeat top center;"></div>
 	      </a>
-	      <div class="randomAuthor">{{ random.author.Name }}</div>
+	      <div class="randomAuthor"><a href="{{ asset('app_dev.php/author/' ~ random.book.FK_Author) }}">{{ random.author.Name }}</a></div>
 	      <div class="randomUploader">{{ random.uploader.Login }}</div>
 	      <div class="randomDescription">{{ random.book.Description }}</div>
 	  </div>
@@ -78,7 +78,7 @@
 		<em>No mark</em>
 {% endfor %}
 	      </div>
-	      <div class="sortiePremierAuteur">{{ fjb.author.Name }}</div>
+	      <div class="sortiePremierAuteur"><a href="{{ asset('app_dev.php/author/' ~ fjb.book.FK_Author) }}">{{ fjb.author.Name }}</a></div>
 	      <div class="sortiePremierPseudo">{{ fjb.uploader.Login }}</div>
 	    </div>
 {% endfor %}
