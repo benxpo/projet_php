@@ -61,18 +61,24 @@
 	  </div>
 	  <div class="hasard">
 	    <div class="hasardTitre">TOP 5</div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- 1</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- 2</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- 3</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- 4</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- 5</p></div>
+{% for fjb in topbooks %}
+	    <div class="top5Numero">
+	      <p style="padding-left:20px;">
+		<a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
+		   - {{ fjb.book.Title }} ({{ fjb.Mark }})
+		</a>
+	      </p>
+	    </div>
+{% endfor %}
 	  </div>
 	  <div class="sortie">
 	    <div class="hasardTitre">Les dernieres sorties</div>
 {% for fjb in lastbooks %}
 	    <div class="sortiePremier">
-	      <div class="sortiePremierImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '01.png') }}') no-repeat top center;"></div>
-	      <div class="sortiePremierNom">{{ fjb.book.Title }}</div>
+	      <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
+		<div class="sortiePremierImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '01.png') }}') no-repeat top center;"></div>
+	      </a>
+	      <div class="sortiePremierNom"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></div>
 	      <div class="sortiePremierNote">
 {% for star in fjb.stars %}
 		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />

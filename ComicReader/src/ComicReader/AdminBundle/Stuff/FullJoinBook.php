@@ -10,6 +10,7 @@ class FullJoinBook
     private $author;
     private $uploader;
     private $comments;
+    private $mark;
     private $stars;
     
     public function getBook()
@@ -64,6 +65,7 @@ class FullJoinBook
         if ($n > 0)
         {
             $mark = round($mark / $n, 1);
+            $this->mark = $mark;
             for (; $mark >= 1.0; $mark--)
                 $this->stars[] = "full_star";
             
@@ -75,5 +77,13 @@ class FullJoinBook
     public function getStars()
     {
         return $this->stars;
+    }
+    
+    public function getMark()
+    {
+        if ($this->mark)
+            return $this->mark;
+        else
+            return "No mark";
     }
 }
