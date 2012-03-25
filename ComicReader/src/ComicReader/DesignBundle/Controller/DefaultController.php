@@ -23,7 +23,7 @@ class DefaultController extends Controller
 	$i = 0;
         foreach ($lastbooks as $b)
         {
-	    if ($i = 2)
+	    if ($i == 3)
 		break;
 	    $i++;
 	    
