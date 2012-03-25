@@ -1,3 +1,20 @@
+a.lien {
+	font-size: 1.8em;
+	margin-top:11px;
+	font-family:arial;
+	display:block;
+	height:60%;
+	width:100%;
+	color: #1234c9;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px #333;
+	}
+body {
+	color:black;
+	background-color:white;
+	background-image:{{ asset('bundles/comicreaderdesign/images/fond.jpg') }};
+	background-repeat:repeat;
+	}
 div {
 	text-align:center;
 	}
@@ -14,33 +31,48 @@ div#ban {
 	}
 div#search {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
 	float:right;
 	width:24%;
-	height:100px;
+	height:60px;
 	}
 input {	
-	margin-top:25px;
+	margin-top:5px;
 	}
 input.btn {
-	margin-top:10px;
+	margin-top:5px;
+	}
+div#propos {
+	border-width: 1px; border-style: solid; border-color: #000000;
+	height:100px;
 	}
 div#accueil {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
+	vertical-align: middle;
 	width:25%;
 	float:left;
-	height:100px;
+	height:60px;
 	}
 div#liste {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#eeb400;
+	border-radius: 15px;
+	vertical-align: middle;
 	width:25%;
 	float:left;
-	height:100px;
+	height:60px;
 	}
 div#ajouter {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
+	vertical-align: middle;
 	width:25%;
 	float:left;
-	height:100px;
+	height:60px;
 	}
 div#retour {
 	text-align:left;	
@@ -54,8 +86,13 @@ div.livre {
 	margin-top:10px;
 	margin-bottom:10px;
 	width:100%;
-	height:200px;	
-	}
+	height:200px;
+}
+div.livre a {
+	border: none;
+	text-decoration: none;
+	color: black;
+}
 div.livreImage {
 	float:left;
 	height:100%;
@@ -75,38 +112,31 @@ div.livreNom {
 	text-align:left;
 	height:20%;
 	width:40%;
-	font-size: 15px;
+	font-size: 1.5em;
 	}
 div.livreNote {
 	text-align:right;
 	float:right;
 	height:20%;
-	font-size: 10px;
 	}
 div.livreAuteur {
 	text-align:left;
 	height:15%;
 	width:50%;
-	font-size: 10px;
+	font-style: italic;
+	font-size: 1.0em;
 	}
 div.livrePseudo {
 	text-align:left;
 	height:15%;
 	width:40%;
-	font-size: 9px;
-	}
-div.livreGenre {
-	text-align:right;
-	float:right;
-	height:15%;
-	width:20%;
-	font-size: 10px;
+	font-size: 0.9em;
 	}
 div.livreDesc {
 	text-align:left;
 	height:50%;
 	width:100%;
-	font-size: 10px;
+	font-size: 0.9em;
 	}
 .clear {
 	clear : both;	

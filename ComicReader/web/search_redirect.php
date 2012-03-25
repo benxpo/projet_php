@@ -6,7 +6,7 @@ if (isset($_POST['search']) && $_POST['search'] != "")
 }
 else
 {
-    $url = 'app_dev.php/ComicReader';
+    $url = 'app_dev.php/search';
 }
 
 ?>
