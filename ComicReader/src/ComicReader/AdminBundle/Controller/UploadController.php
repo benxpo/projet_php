@@ -93,14 +93,12 @@ class UploadController extends Controller
 				$filebytes[3] == chr(71) && $filebytes[4] == chr(13) && $filebytes[5] == chr(10) &&
 				$filebytes[6] == chr(26) && $filebytes[7] == chr(10))
 			{
-				echo " - PNG<br />";
 				$format_png = true;
 			}
 			
 			// Check if the file is a JPG
 			if ($filebytes[0] == chr(255) && $filebytes[1] == chr(216) && $filebytes[2] == chr(255))
 			{
-				echo " - JPG<br />";
 				$format_jpg = true;
 			}
 			
@@ -177,7 +175,7 @@ class UploadController extends Controller
 		
 		for ($n = 0; $n < count($file_array); ++$n)
 		{
-			$fp = fopen($basedir."/".$author."/".$manga."/".$file_array[$n][0].".".$file_array[$n][1], 'w');
+			$fp = fopen($basedir."/".$author."/".$manga."/".$file_array[$n][0], 'w');
 			fwrite($fp, $file_array[$n][2]);
 			fclose($fp);
 			
