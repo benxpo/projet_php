@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     
-    public function indexAction()
+    public function indexAction($name)
     {
-	return $this->render('ComicReaderDesignBundle:Index:index.html.twig', array('nom' => 'winzou'));
+	return $this->render('ComicReaderDesignBundle:Index:'.$name.'.html.twig');
     }
 }
