@@ -34,7 +34,12 @@ class Mark
      * @ORM\Column(name="Mark", type="integer", nullable=true)
      */
     private $Mark;
-
+    /**
+     * @var string $Name
+     *
+     * @ORM\Column(name="Name", type="string", length=100)
+     */
+    private $Name;
     /**
      * @var string $Comment
      *
@@ -125,6 +130,16 @@ class Mark
         return $this->Comment;
     }
 
+    public function setName($comment)
+    {
+        $this->Name = $comment;
+    }
+
+    public function getName()
+    {
+        return $this->Name;
+    }
+
     public function setFK_User($comment)
     {
         $this->FK_User = $comment;
@@ -146,6 +161,7 @@ class Mark
 	$this->Date =  new \DateTime('now');
 	$this->Mark = 0;
 	$this->Comment = "";
+	$this->Name = "";
 
     	$this->FK_User = 0;
 	$this->FK_Book = 0;
