@@ -1,6 +1,49 @@
-<form action="{{ path('comicreader_admin_admin_login') }}" method="post" enctype="multipart/form-data">
-    {{ form_widget(form) }}
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Connexion à l'interface d'administration</title>
+	</head>
+	<body style="background: #000; margin:0 auto; padding:0; text-align: left;">
 
-    <input type="submit" />
-</form>
+		<div style="
+	background: #fff;
+	margin-left : auto;
+	margin-right : auto;
+	margin-top : 50px;
+	overflow: hidden;
+	padding: 20px;
+	width: 500px;
+	text-align : center
+ 	left:50%
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	">
+	<h3 style=" margin-top:-5px;"> Veuillez vous logger pour accéder à l'interface d'administration</h2>
 
+		<form action="{{ path('comicreader_admin_admin_login') }}" method="post" enctype="multipart/form-data">
+				{{ form_errors(form) }}
+
+				<div style="margin-left:50px; margin-top:50px;">
+				{{ form_label(form.login, "Identifiant") }}
+   			{{ form_errors(form.login) }}
+    		<span style="margin-left:50px;">{{ form_widget(form.login) }}</span>
+				</div>
+				<br/>
+				<div style="margin-left:50px;">
+				{{ form_label(form.password, "Mot de passe") }}
+   			{{ form_errors(form.password) }}
+    		<span style="margin-left:27px;">{{ form_widget(form.password) }}</span>
+				</div>
+		    <br/>
+				
+				<p style="margin-left : 190px"><input  type="submit" Value="&nbsp;Se connecter&nbsp;"/></p>
+		</form>
+
+		</div>
+
+
+
+
+	</body>
+</html>
