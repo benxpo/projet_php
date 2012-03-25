@@ -1,0 +1,149 @@
+a.lien {
+	font-size: 1.8em;
+	margin-top:11px;
+	font-family:arial;
+	display:block;
+	height:60%;
+	width:100%;
+	color: #1234c9;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px #333;
+	}
+body {
+	color:black;
+	background-color:white;
+	background-image:{{ asset('bundles/comicreaderdesign/images/fond.jpg') }};
+	background-repeat:repeat;
+	}
+div {
+	text-align:center;
+	}
+div#main{
+	margin-left:auto;
+	margin-right:auto;
+	width:960px;
+	border-style:none;
+	}
+div#ban {
+	width:100%;
+	height:100px;
+	margin-bottom:10px;
+	}
+div#search {
+	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
+	float:right;
+	width:24%;
+	height:60px;
+	}
+input {	
+	margin-top:5px;
+	}
+input.btn {
+	margin-top:5px;
+	}
+div#propos {
+	border-width: 1px; border-style: solid; border-color: #000000;
+	height:100px;
+	}
+div#accueil {
+	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
+	vertical-align: middle;
+	width:25%;
+	float:left;
+	height:60px;
+	}
+div#liste {
+	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#eeb400;
+	border-radius: 15px;
+	vertical-align: middle;
+	width:25%;
+	float:left;
+	height:60px;
+	}
+div#ajouter {
+	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
+	vertical-align: middle;
+	width:25%;
+	float:left;
+	height:60px;
+	}
+div#retour {
+	text-align:left;	
+	margin-top:10px;
+	color:blue;
+	}
+div.livre {
+	border-width: 1px; border-style: solid; border-color: #000000;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+	margin-bottom:10px;
+	width:100%;
+	height:200px;
+}
+div.livre a {
+	border: none;
+	text-decoration: none;
+	color: black;
+}
+div.livreImage {
+	float:left;
+	height:100%;
+	width:32%;
+	border-width: 1px; border-style: solid; border-color: #000000;
+	margin-top: -1px;
+	margin-left: -1px;
+	}
+div.livreinfos {
+	float:right;
+	margin-right:1%;
+	margin-top:0.5%;
+	height:90%;
+	width:65%;
+	}
+div.livreNom {
+	text-align:left;
+	height:20%;
+	width:40%;
+	font-size: 1.5em;
+	}
+div.livreNote {
+	text-align:right;
+	float:right;
+	height:20%;
+	}
+div.livreAuteur {
+	text-align:left;
+	height:15%;
+	width:50%;
+	font-style: italic;
+	font-size: 1.0em;
+	}
+div.livrePseudo {
+	text-align:left;
+	height:15%;
+	width:40%;
+	font-size: 0.9em;
+	}
+div.livreDesc {
+	text-align:left;
+	height:50%;
+	width:100%;
+	font-size: 0.9em;
+	}
+.clear {
+	clear : both;	
+}
+
+.search_item
+{
+	border-width: 1px; border-style: solid; border-color: #000000;
+	margin-bottom: -1px;
+}
