@@ -54,7 +54,7 @@ $(document).ready(
 	<div id="retour"><a href="javascript:history.go(-1)">Retourner a la liste des livres</a></div>
 
 	  <div class="livre">
-    	    <div class="livreImage">image</div>
+    	    <div class="livreImage" style="background: url('{{ asset('bundles/books/' ~ thumbnail) }}') no-repeat top center;"></div>
 	    <div class="livreinfos"> 
 	      <div class="livreNote">
 {% for star in stars %}
@@ -64,10 +64,13 @@ $(document).ready(
 {% endfor %}
 	      </div>
 	      <div class="livreNom">{{ book.Title }}</div>
-	      <div class="livreAuteur">{{ bookauthor }}</div>
-	      <div class="livrePseudo">^_^ Pseudo</div>
+	      <div class="livreAuteur"><u>Draw by</u> : <a href="{{ asset('app_dev.php/author/' ~ book.FK_Author) }}">{{ bookauthor }}</a></div>
+	      <div class="livrePseudo"><u>Uploaded by</u> : {{ uploader }}</div>
 	      <div class="livreDesc">{{ book.Description}}</div>
+	    </div>
 	  </div>
+	  
+	  <!-- Start reading ... -->
 {% for page in pages %}
 	    <div id="{{ page.id }}" class="comic_image_box" >
 		<img src="{{ asset('bundles/books/' ~ page.path) }}" alt="" />
