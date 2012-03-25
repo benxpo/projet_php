@@ -24,22 +24,34 @@ class DefaultController extends Controller
      */
     public function readerAction($bookid)
     {
-        // FOR TESTS
-        $book = "GLO_c106";
+        $book = $this->getDoctrine()
+                        ->getEntityManager()
+                        ->getRepository('ComicReaderAdminBundle:Book')
+                        ->find(intval($bookid));
+        
+        if ($book == null)
+            return $this->render('ComicReaderAdminBundle:Default:empty.html.twig');
+
+        $author = $this->getDoctrine()
+                        ->getEntityManager()
+                        ->getRepository('ComicReaderAdminBundle:Author')
+                        ->find($book->getId());
         
         $pages = array();
         for ($i=1;$i<3;$i++)
         {
             if ($i < 10)
-                $path = sprintf("%s/%s_p0%d.png", $book, $book, $i);
+                $path = sprintf("%s_p0%d.png", $book->getServerPath(), $i);
             else
-                $path = sprintf("%s/%s_p%d.png", $book, $book, $i);
+                $path = sprintf("%s/%s_p%d.png", $book->getServerPath(), $i);
 
             array_push($pages, array('id' => $i, 'path' => $path));
         }
         
         return $this->render('ComicReaderAdminBundle:Default:reader.html.twig',
                              array('bookid' => $bookid,
+                                   'booktitle' => $book->getTitle(),
+                                   'bookauthor' => $author->getName(),
                                    'pages' => $pages));
     }
     
@@ -48,20 +60,23 @@ class DefaultController extends Controller
      * @Template()
      */
     public function nextPageAction($bookid, $lastpageid)
-    {
-        // FOR TESTS
-        $book = "GLO_c106";
-        
+    {   
         $session  = $this->get("session");
         
         if ($session->get('lastPageId') != $lastpageid + 1 ||
             $session->get('lastPageIdTime') + 10 <= time())
         {
+            
+            $book = $this->getDoctrine()
+                            ->getEntityManager()
+                            ->getRepository('ComicReaderAdminBundle:Book')
+                            ->find($bookid);
+            
             $id = intval($lastpageid) + 1;
             if ($id < 10)
-                $path = sprintf("%s/%s_p0%d.png", $book, $book, $id);
+                $path = sprintf("%s_p0%d.png", $book->getServerPath(), $id);
             else
-                $path = sprintf("%s/%s_p%d.png", $book, $book, $id);
+                $path = sprintf("%s/%s_p%d.png", $book->getServerPath(), $id);
             $page = array('id' => $id, 'path' => $path);
             
             $pages = array($page);

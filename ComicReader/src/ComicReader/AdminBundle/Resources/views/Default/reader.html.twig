@@ -1,6 +1,9 @@
+
 <html>
     <head>
-	<title>Comic Reader</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/livre.css') }}">
+	<title>{{ booktitle }} - {{ bookauthor }}</title>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script type="text/javascript">
 $(document).ready(
@@ -25,7 +28,7 @@ $(document).ready(
 	$(window).scroll(
 	    function()
 	    {
-		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 200)
+		if ($(window).scrollTop() >= $(document).height() - $(window).height())
 		{
 		    last_msg_funtion();
 		}
@@ -34,12 +37,37 @@ $(document).ready(
         </script>
     </head>
     <body>
+      <div id="main">
+	<div id="ban"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" /></div>
+
+	<div id="accueil">Accueil</div>
+	<div id="liste">Liste</div>
+	<div id="ajouter">Ajouter</div>
+	<div id="recherche">
+	  <input value="Rechercher" size="22" maxlength="255" onFocus="this.value=''"/>
+          </input>
+          <button type="button" onclick="">Rechercher</button> 
+	</div>
+	<div class="clear"></div>
+
+	<div id="retour">Retourner a la liste des livres</div>
+
+	  <div class="livre">
+    	    <div class="livreImage">image</div>
+	    <div class="livreinfos"> 
+	      <div class="livreNote">Note</div>
+	      <div class="livreNom">{{ booktitle }}</div>
+	      <div class="livreAuteur">{{ bookauthor }}</div>
+	      <div class="livrePseudo">^_^ Pseudo</div>
+	      <div class="livreDesc"></div>
+	  </div>
 {% for page in pages %}
-        <div id="{{ page.id }}" class="comic_image_box" >
-	    <img src="{{ asset('bundles/books/' ~ page.path) }}" alt="" />
-        </div>
+	    <div id="{{ page.id }}" class="comic_image_box" >
+		<img src="{{ asset('bundles/books/' ~ page.path) }}" alt="" />
+	    </div>
 {% endfor %}
 
-        <div id="last_image_loader"></div>
+	    <div id="last_image_loader"></div>
+	</div>
     </body>
 </html>
