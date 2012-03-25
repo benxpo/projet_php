@@ -5,10 +5,15 @@ namespace ComicReader\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use ComicReader\AdminBundle\Stuff\stuff;
+use ComicReader\AdminBundle\Stuff\Stuff;
 use ComicReader\AdminBundle\Form;
 use Symfony\Component\HttpFoundation\Request;
-
+use ComicReader\AdminBundle\Entity\T_User;
+use ComicReader\AdminBundle\Entity\Book;
+use ComicReader\AdminBundle\Entity\Mark;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use ComicReader\AdminBundle\Entity\Category;
+use ComicReader\AdminBundle\Entity\Author;
 class AdminController extends Controller
 {
     /**
@@ -34,21 +39,21 @@ class AdminController extends Controller
         if ($request->getMethod() == 'POST')
 		{
 			$form->bindRequest($request);
-            $data = $form->getData();
-			
+           		$data = $form->getData();
+			$session = $this->get("session");
 			$login = $data['login'];
 			$pass = md5($data['password']);
 
 			$result = $this->getDoctrine()
 			->getEntityManager()
 			->getRepository('ComicReaderAdminBundle:T_User')
-			->authentificate($pseudo, $pass);
+			->authentificate($login, $pass);
 
 			if ($result)
 			{
-				//go to page menu
 				$session = $this->get("session");
-				$session->set('name', 'login');
+				$session->set('name', $login);
+				return $this->redirect('menu');
 			}
 			else
 			{
@@ -70,14 +75,14 @@ class AdminController extends Controller
     {
 		$session = $this->get("session");
 		$name = $session->get('name');
-		if ($name <> "")
+		if ($name == "")
 		{
-			return array("name" => $name, "stat" => "Admin");
+			 return $this->redirect('login');
 		}
-		else
-		{
-			;//header vers page de connec
-		}
+
+		return array("name" => $name, "stat" => "Admin");
+
+
 	}
 
     /**
@@ -101,7 +106,7 @@ class AdminController extends Controller
 		$name = $session->get('name');
 		if ($name == "")
 		{
-			;//header vers login
+			return $this->redirect('login');
 		}
 		$tab = $this->getDoctrine()
 					->getEntityManager()
@@ -118,7 +123,7 @@ class AdminController extends Controller
 		}
 		echo "</table>";
 
-		return array();
+		return array('tab' => $tab);
 
 	}
 
@@ -132,7 +137,7 @@ class AdminController extends Controller
 		$name = $session->get('name');
 		if ($name == "")
 		{
-			;//header vers login
+			return $this->redirect('login');
 		}
 		$tab = $this->getDoctrine()
 					->getEntityManager()
@@ -142,12 +147,13 @@ class AdminController extends Controller
 		foreach ($tab as $c)
 		{
 			echo "<tr><td>";
-			echo $c->getName() . "</td><td>";
+			echo $c->getTitle() . "</td><td>";
 			echo "Modifier" . "</td><td>";
 			echo "Supprimer" . "</td></tr>";
 		}
 		echo "</table>";
-		echo ("");//lien vers ajouter book
+
+		return array();
 	}
 	/**
      * @Route("/user")
@@ -159,10 +165,10 @@ class AdminController extends Controller
 		$name = $session->get('name');
 		if ($name == "")
 		{
-			;//header vers login
+			return $this->redirect('login');
 		}
 		$tab = $this->getDoctrine()->getRepository("ComicReaderAdminBundle:T_User")->findAll();
-		//SQL recuperer liste
+
 		echo "<table><tr><td>Login</td><td>Admin</td><td>Mod</td><td></td><td></td></tr>";
 		foreach ($tab as $c)
 		{
@@ -174,21 +180,52 @@ class AdminController extends Controller
 			echo "Supprimer" . "</td></tr>";
 		}
 		echo "</table>";
-		echo ("");//lien vers ajouter user
+
+		return array();
 	}
-	/**
+    /**
      * @Route("/addU")
      * @Template
      */
     public function addUAction(Request $request)
     {
-		$session = $this->get("session");
-		$name = $session->get('name');
-		if ($name == "")
-		{
-			;//header vers login
-		}
+	$session = $this->get("session");
+	$name = $session->get('name');
+	if ($name == "")
+	{
+		//return $this->redirect('login');
 	}
+
+	$form = $this->createFormBuilder(array())
+	->add('login', 'text')
+	->add('password', 'text')
+	->add('admin', 'checkbox', array("required" => false))
+	->add('modo', 'checkbox', array("required" => false))
+	->getForm();
+
+        if ($request->getMethod() == 'POST')
+	{
+		$form->bindRequest($request);
+    		$data = $form->getData();
+
+		$login = $data['login'];
+		$pass = $data['password'];
+		$ad = 0;
+		$mo = 0;
+
+		$user = new T_User;
+		$user->setLogin($login);
+		$user->setis_Admin($ad);
+		$user->setis_Mod($mo);
+		$user->setPassword(md5($pass));
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($user);$em->flush();
+		
+	}
+	return $this->render('ComicReaderAdminBundle:Admin:addU.html.twig',
+			array('form' => $form->createView(),));
+    }
 	/**
      * @Route("/modU")
      * @Template
@@ -199,22 +236,27 @@ class AdminController extends Controller
 		$name = $session->get('name');
 		if ($name == "")
 		{
-			;//header vers login
+			return $this->redirect('login');
 		}
-	}
-	/**
-     * @Route("/addB")
-     * @Template
-     */
-    public function addBAction(Request $request)
-    {
-		$session = $this->get("session");
-		$name = $session->get('name');
-		if ($name == "")
+
+		$form = $this->createFormBuilder(array())
+		->add('login', 'text')
+		->add('password', 'password')
+		->getForm();
+
+        if ($request->getMethod() == 'POST')
 		{
-			;//header vers login
+			$form->bindRequest($request);
+            $data = $form->getData();
+			
+			$login = $data['login'];
+
+
 		}
+ 		return $this->render('ComicReaderAdminBundle:Admin:modU.html.twig',
+				array('form' => $form->createView(),));
 	}
+
 	/**
      * @Route("/modB")
      * @Template
@@ -225,7 +267,24 @@ class AdminController extends Controller
 		$name = $session->get('name');
 		if ($name == "")
 		{
-			;//header vers login
+			return $this->redirect('login');
 		}
+
+		$form = $this->createFormBuilder(array())
+		->add('login', 'text')
+		->add('password', 'password')
+		->getForm();
+
+        if ($request->getMethod() == 'POST')
+		{
+			$form->bindRequest($request);
+            $data = $form->getData();
+			
+			$login = $data['login'];
+
+
+		}
+ 		return $this->render('ComicReaderAdminBundle:Admin:modB.html.twig',
+				array('form' => $form->createView(),));
 	}
 }
