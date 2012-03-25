@@ -1,7 +1,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>Menu de l'interface d'administration</title>
+		<title>Ajout utilisateur</title>
 	</head>
 	<style>
 		a {outline: 0;}
@@ -27,12 +27,22 @@
 		">
 
 <div id="header" style="
-	width : 840px;
-	height: 150px;
 	background: #fff;
-	margin : auto;
+	margin: 0 auto 0 auto;
+	font-size: 50px;
+	overflow: hidden;
+	padding: 20px;
+	width: 800px;
+	text-align : center;
+	padding-bottom:30px;
+	border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-webkit-border-bottom-right-radius: 10px;
 	">
-	logo
+	ComicReader<br/>Administration
 </div>
 
 <div style="
@@ -102,6 +112,7 @@
 	">
 	<p style="text-align:center">
 		<a  href="{{ path('comicreader_admin_admin_menu') }}"><b>Retour au menu</b></a><br/><br/>
+		<a  href="{{ path('comicreader_admin_admin_user') }}"><b>Retour à la liste</b></a><br/><br/>
 		<a  href="{{ asset('app_dev.php/deco') }}"><b>Deconnexion</b></a>
 	</p>
 </div>

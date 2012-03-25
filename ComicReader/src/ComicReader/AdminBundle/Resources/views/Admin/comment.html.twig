@@ -1,7 +1,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>Modification livre</title>
+		<title>Commentaires</title>
 	</head>
 	<style>
 		a {outline: 0;}
@@ -18,6 +18,13 @@
 			text-shadow: 1px 1px 1px #333;
 		}
 	</style>
+<style>
+td
+{
+text-align : center;
+width : 175px;
+}
+</style>
 	<body style="
 		background: #000;
 		margin:0 auto; 
@@ -59,25 +66,22 @@
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	">
-<h4 style="padding:10px">Modifier un ouvrage</h4>
+<h4 style="padding:10px">Vous êtes actuellement sur l'interface de modération des commentaires.</h4>
+<p style="margin-left:30px; margin-top:-15px">Vous allez ici pouvoir supprimer les commentaires ne respectant pas la netiquette.</p>
+<br/>
 
 
-<form action="{{ asset('app_dev.php/modB/' ~ id) }}" method="post" enctype="multipart/form-data">
-{{ form_errors(form) }}
-    	<div style="margin-left:50px; margin-top:50px;">
-	{{ form_label(form.title, "Titre") }}
-	{{ form_errors(form.title) }}
-	<span style="margin-left:82px;">{{ form_widget(form.title) }}</span>
-	</div>
-	<br/>
-	<div style="margin-left:50px;">
-	{{ form_label(form.description, "Description") }}
-	{{ form_errors(form.description) }}
-	<span style="margin-left:27px;">{{ form_widget(form.description) }}</span>
-	</div><br/>
+<table border="2" align="center" width="700" cellspacing="1px" >
+<tr><td><b>Commentaire</b></td><td><b>suppression</b></td></tr>
+{% for c in tab %}
+<tr><td>
+{{c.Comment}}</td>
+<td><a href="{{ asset('app_dev.php/delC/' ~ c.Id) }}">Supprimer</a></td></tr>
+{%endfor %}
 
-    <p style="margin-left : 190px"><input  type="submit" Value="&nbsp;Modifier&nbsp;"/></p>
-</form>
+</table>
+<br/>
+
 
 
 <br/><br/><br/>
@@ -101,7 +105,7 @@
 	">
 	<p style="text-align:center">
 		<a  href="{{ path('comicreader_admin_admin_menu') }}"><b>Retour au menu</b></a><br/><br/>
-		<a  href="{{ path('comicreader_admin_admin_book') }}"><b>Retour à la liste</b></a><br/><br/>
+		<a  href="{{ path('comicreader_admin_admin_book') }}"><b>Retour à la liste de livre</b></a><br/><br/>
 		<a  href="{{ asset('app_dev.php/deco') }}"><b>Deconnexion</b></a>
 	</p>
 </div>

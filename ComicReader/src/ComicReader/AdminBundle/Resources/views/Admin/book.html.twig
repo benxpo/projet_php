@@ -1,7 +1,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>Menu de l'interface d'administration</title>
+		<title>Interface livre</title>
 	</head>
 	<style>
 		a {outline: 0;}
@@ -27,12 +27,22 @@
 		">
 
 <div id="header" style="
-	width : 840px;
-	height: 150px;
 	background: #fff;
-	margin : auto;
+	margin: 0 auto 0 auto;
+	font-size: 50px;
+	overflow: hidden;
+	padding: 20px;
+	width: 800px;
+	text-align : center;
+	padding-bottom:30px;
+	border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-webkit-border-bottom-right-radius: 10px;
 	">
-	logo
+	ComicReader<br/>Administration
 </div>
 
 <div style="
@@ -61,11 +71,12 @@ width : 175px;
 }
 </style>
 <table border="2" align="center" width="700" cellspacing="1px" >
-<tr><td><b>Id</b></td><td><b>Titre</b></td><td><b>Modifier</b></td><td><b>Supprimer</b></td></tr>
+<tr><td><b>Id</b></td><td><b>Titre</b></td><td><b>Commentaires</b></td><td><b>Modifier</b></td><td><b>Supprimer</b></td></tr>
 {% for c in tab %}
 <tr><td>
 {{c.Id}}</td><td>
-{{c.Title}}</td><td>
+{{c.Title}}</td>
+<td><a href="{{ asset('app_dev.php/comment/' ~ c.Id) }}">Commentaires</a></td>
 <td><a href="{{ asset('app_dev.php/modB/' ~ c.Id) }}">Modifier</a></td>
 <td><a href="{{ asset('app_dev.php/delB/' ~ c.Id) }}">Supprimer</a></td>
 </tr>
