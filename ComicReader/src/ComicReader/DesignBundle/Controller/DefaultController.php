@@ -12,15 +12,21 @@ class DefaultController extends Controller
     
     public function indexAction($name)
     {
-        $books = $this->getDoctrine()
+	// get 2 last books=
+        $lastbooks = $this->getDoctrine()
                          ->getEntityManager()
                          ->getRepository('ComicReaderAdminBundle:Book')
-                         ->findAllValidated();
+                         ->findLast();
                 $fullJoinBooks = array();
         
-        $fullJoinBooks = array();
-        foreach ($books as $b)
+        $lastfullJoinBooks = array();
+	$i = 0;
+        foreach ($lastbooks as $b)
         {
+	    if ($i = 2)
+		break;
+	    $i++;
+	    
             // Get author
             $author = $this->getDoctrine()
                         ->getEntityManager()
@@ -44,10 +50,11 @@ class DefaultController extends Controller
             $fjb->setAuthor($author);
             $fjb->setUploader($uploader);
             $fjb->setComments($comments);
-            $fullJoinBooks[] = $fjb;
+            $lastfullJoinBooks[] = $fjb;
         }
  
 	return $this->render('ComicReaderDesignBundle:Index:'.$name.'.html.twig',
-                             array('books' => $fullJoinBooks));
+                             array('books' => $lastfullJoinBooks,
+				   'lastbooks' => $lastfullJoinBooks));
     }
 }

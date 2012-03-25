@@ -69,27 +69,21 @@
 	  </div>
 	  <div class="sortie">
 	    <div class="hasardTitre">Les dernieres sorties</div>
+{% for fjb in lastbooks %}
 	    <div class="sortiePremier">
-	      <div class="sortiePremierImage">image</div>
-	      <div class="sortiePremierNom">NOM</div>
-	      <div class="sortiePremierNote">Note</div>
-	      <div class="sortiePremierAuteur">Auteur</div>
-	      <div class="sortiePremierPseudo">^_^ Pseudo</div>
+	      <div class="sortiePremierImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '01.png') }}') no-repeat top center;"></div>
+	      <div class="sortiePremierNom">{{ fjb.book.Title }}</div>
+	      <div class="sortiePremierNote">
+{% for star in fjb.stars %}
+		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
+{% else %}
+		<em>No mark</em>
+{% endfor %}
+	      </div>
+	      <div class="sortiePremierAuteur">{{ fjb.author.Name }}</div>
+	      <div class="sortiePremierPseudo">{{ fjb.uploader.Login }}</div>
 	    </div>
-	    <div class="sortiePremier">
-	      <div class="sortiePremierImage">image</div>
-	      <div class="sortiePremierNom">NOM</div>
-	      <div class="sortiePremierNote">Note</div>
-	      <div class="sortiePremierAuteur">Auteur</div>
-	      <div class="sortiePremierPseudo">^_^ Pseudo</div>
-	    </div>
-	    <div class="sortiePremier">
-	      <div class="sortiePremierImage">image</div>
-	      <div class="sortiePremierNom">NOM</div>
-	      <div class="sortiePremierNote">Note</div>
-	      <div class="sortiePremierAuteur">Auteur</div>
-	      <div class="sortiePremierPseudo">^_^ Pseudo</div>
-	    </div>
+{% endfor %}
 	  </div>
 	  <div class="clear"></div>
 	</div>
