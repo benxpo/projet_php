@@ -5,6 +5,8 @@ namespace ComicReader\DesignBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+use ComicReader\AdminBundle\Stuff\FullJoinBook;
+
 class DefaultController extends Controller
 {
     

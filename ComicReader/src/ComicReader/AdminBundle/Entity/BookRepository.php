@@ -79,4 +79,18 @@ class BookRepository extends EntityRepository
     
         return $qb->getQuery()->getResult();
     }
+    
+    public function getLast()
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('b')
+            ->from('ComicReaderAdminBundle:Book', 'b')
+            ->where('b.Validated >= :validate')
+            ->setParameter('validate', 1)
+            ->orderBy('u.username ASC')
+            ->limit(5);
+    
+        return $qb->getQuery()->getResult();
+    }
 }
