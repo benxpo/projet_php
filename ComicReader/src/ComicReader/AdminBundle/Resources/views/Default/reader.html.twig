@@ -79,6 +79,21 @@ $(document).ready(
 
 	    <div id="last_image_loader"></div>
 	</div>
+	<div id="book_comments">
+<!-- Comments -->
+{% for c in comments %}
+	<div class="a_comment">
+	    <h4>{{ c.Name }}</h4>
+	    <div class="a_comment_mark">
+		{{ c.Mark }}
+	    </div>
+	    <p>
+		{{ c.Comment }}
+	    </p>
+{% else %}
+	    <em>No comment. Be the first to post one ?</em>
+{% endfor %}
+	</div>
 	<div>
 		<form action="{{ asset('app_dev.php/addComent') }}" method="post" enctype="multipart/form-data">
 			{{ form_widget(form) }}

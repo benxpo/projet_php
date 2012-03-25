@@ -112,6 +112,7 @@ class DefaultController extends Controller
                                    'uploader' => $uploader->getLogin(),
                                    'stars' => $stars,
                                    'pages' => $pages,
+                                   'comments' => $comments,
 				   'form' => $form->createView()));
     }
     
