@@ -1,3 +1,16 @@
+a.lien {
+	text-color:black;
+	vertical-align:middle;	
+	display:block;
+	height:100%;
+	width:100%;
+	}
+body {
+	color:black;
+	background-color:white;
+	background-image:{{ asset('bundles/comicreaderdesign/images/fond.jpg') }};
+	background-repeat:repeat;
+	}
 div {
 	text-align:center;
 	}
@@ -14,15 +27,17 @@ div#ban {
 	}
 div#recherche {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
 	float:right;
 	width:24%;
-	height:100px;
+	height:60px;
 	}
 input {	
-	margin-top:25px;
+	margin-top:5px;
 	}
 input.btn {
-	margin-top:10px;
+	margin-top:5px;
 	}
 div#propos {
 	border-width: 1px; border-style: solid; border-color: #000000;
@@ -30,21 +45,30 @@ div#propos {
 	}
 div#accueil {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#eeb400;
+	border-radius: 15px;
+	vertical-align: middle;
 	width:25%;
 	float:left;
-	height:100px;
+	height:60px;
 	}
 div#liste {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
+	vertical-align: middle;
 	width:25%;
 	float:left;
-	height:100px;
+	height:60px;
 	}
 div#ajouter {
 	border-width: 1px; border-style: solid; border-color: #000000;
+	background-color:#b6d10d;
+	border-radius: 15px;
+	vertical-align: middle;
 	width:25%;
 	float:left;
-	height:100px;
+	height:60px;
 	}
 
 div#contenu {
