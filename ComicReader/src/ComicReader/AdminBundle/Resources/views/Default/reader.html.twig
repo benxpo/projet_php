@@ -2,7 +2,7 @@
 <html>
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/livre.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/design.css') }}">
 	<title>{{ booktitle }} - {{ bookauthor }}</title>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script type="text/javascript">
@@ -43,14 +43,13 @@ $(document).ready(
 	<div id="accueil">Accueil</div>
 	<div id="liste">Liste</div>
 	<div id="ajouter">Ajouter</div>
-	<div id="recherche">
-	  <input value="Rechercher" size="22" maxlength="255" onFocus="this.value=''"/>
-          </input>
-          <button type="button" onclick="">Rechercher</button> 
-	</div>
+	<form id="search" method="POST" action="{{ asset('search_redirect.php') }} ">
+	  <input name="search" value="" size="22" maxlength="255" onFocus="this.value=''" />
+	  <input type="submit" value="Search" />
+	</form>
 	<div class="clear"></div>
 
-	<div id="retour">Retourner a la liste des livres</div>
+	<div id="retour"><a href="javascript:history.go(-1)">Retourner a la liste des livres</a></div>
 
 	  <div class="livre">
     	    <div class="livreImage">image</div>

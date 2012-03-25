@@ -2,7 +2,7 @@
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/design.css') }}">
-	<title>Search - {{ searchvalue }}</title>
+	<title>All books</title>
     </head>
     <body>
       <div id="main">
@@ -17,31 +17,14 @@
 	</form>
 	<div class="clear"></div>
 	    <div class="book_list">
-		<h2>Title</h2>
-	    {% for book in titlebooks %}
+		<h2>All books</h2>
+	    {% for book in books %}
 		<div class="book_item" >
 		    <h5>{{ book.title }}</h5>
 		    <a href={{ asset('app_dev.php/reader/' ~ book.id) }} >Read this book</a>
 		</div>
 	    {% else %}
-		<em>No books found</em>
-	    {% endfor %}
-		<h2>Author</h2>
-	    {% for author in authorbooks %}
-		<div class="book_item" >
-		    <h5><a href="{{ asset('app_dev.php/author/' ~ author.id) }}">{{ author.name }}</a></h5>
-		</div>
-	    {% else %}
-		<em>No books found</em>
-	    {% endfor %}
-		<h2>Description</h2>
-	    {% for book in descriptionbooks %}
-		<div class="book_item" >
-		    <h5>{{ book.title }}</h5>
-		    <a href={{ asset('app_dev.php/reader/' ~ book.id) }} >Read this book</a>
-		</div>
-	    {% else %}
-		<em>No books found</em>
+		<em>No books</em>
 	    {% endfor %}
 	    </div>
 	</div>

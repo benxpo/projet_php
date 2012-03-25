@@ -6,18 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use MyApp\FilmothequeBundle\Form\SearchForm;
 
 class DefaultController extends Controller
-{   
-    /**
-     * @Route("/hello/{name}")
-     * @Template()
-     */
-    public function indexAction($name)
-    {
-        return array('name' => $name);
-    }
-    
+{
     /**
      * @Route("/reader/{bookid}")
      * @Template()
@@ -30,7 +22,7 @@ class DefaultController extends Controller
                         ->find(intval($bookid));
         
         if ($book == null)
-            return $this->render('ComicReaderAdminBundle:Default:empty.html.twig');
+            return $this->render('ComicReaderAdminBundle:Default:error.html.twig');
 
         $author = $this->getDoctrine()
                         ->getEntityManager()
@@ -54,6 +46,7 @@ class DefaultController extends Controller
                                    'bookauthor' => $author->getName(),
                                    'pages' => $pages));
     }
+    
     
     /**
      * @Route("/nextpage/{bookid}/{lastpageid}")
@@ -93,11 +86,29 @@ class DefaultController extends Controller
     
 
     /**
+     * @Route("/search/")
+     * @Template()
+     */
+    public function searchAllAction()
+    {   
+        $books = $this->getDoctrine()
+                         ->getEntityManager()
+                         ->getRepository('ComicReaderAdminBundle:Book')
+                         ->findAllValidated();
+                
+        return $this->render('ComicReaderAdminBundle:Search:allBooks.html.twig',
+                             array('books' => $books));
+    }
+    
+
+    /**
      * @Route("/search/{value}/")
      * @Template()
      */
     public function searchAction($value)
     {
+        $value = htmlentities($value);
+        
         $titlebooks = $this->getDoctrine()
                          ->getEntityManager()
                          ->getRepository('ComicReaderAdminBundle:Book')
@@ -114,7 +125,8 @@ class DefaultController extends Controller
                          ->searchDescription($value);
                 
         return $this->render('ComicReaderAdminBundle:Search:result.html.twig',
-                             array('titlebooks' => $titlebooks,
+                             array('searchvalue' => $value,
+                                   'titlebooks' => $titlebooks,
                                    'authorbooks' => $authorbooks,
                                    'descriptionbooks' => $descriptionbooks));
     }
