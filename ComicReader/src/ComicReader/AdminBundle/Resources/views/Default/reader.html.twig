@@ -3,7 +3,7 @@
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/design.css') }}">
-	<title>{{ booktitle }} - {{ bookauthor }}</title>
+	<title>{{ book.Title }} - {{ bookauthor }}</title>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script type="text/javascript">
 $(document).ready(
@@ -13,7 +13,7 @@ $(document).ready(
 	{
             var ID=$(".comic_image_box:last").attr("id");
             $('div#last_image_loader').html('<img src="{{ asset('bundles/reader/images/loader.gif') }}" alt="Loading...">');
-            $.post("{{ asset('app_dev.php/nextpage/' ~ bookid) }}/"+ID,
+            $.post("{{ asset('app_dev.php/nextpage/' ~ book.id) }}/"+ID,
                 function(data)
                 {
                     if (data != "")
@@ -56,11 +56,17 @@ $(document).ready(
 	  <div class="livre">
     	    <div class="livreImage">image</div>
 	    <div class="livreinfos"> 
-	      <div class="livreNote">Note</div>
-	      <div class="livreNom">{{ booktitle }}</div>
+	      <div class="livreNote">
+{% for star in stars %}
+		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
+{% else %}
+		<em>No mark</em>
+{% endfor %}
+	      </div>
+	      <div class="livreNom">{{ book.Title }}</div>
 	      <div class="livreAuteur">{{ bookauthor }}</div>
 	      <div class="livrePseudo">^_^ Pseudo</div>
-	      <div class="livreDesc"></div>
+	      <div class="livreDesc">{{ book.Description}}</div>
 	  </div>
 {% for page in pages %}
 	    <div id="{{ page.id }}" class="comic_image_box" >

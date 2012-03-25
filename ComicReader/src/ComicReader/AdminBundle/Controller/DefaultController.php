@@ -17,6 +17,9 @@ class DefaultController extends Controller
      */
     public function readerAction($bookid, Request $request)
     {
+        $bookid = intval($bookid);
+        
+        // Get book
         $book = $this->getDoctrine()
                         ->getEntityManager()
                         ->getRepository('ComicReaderAdminBundle:Book')
@@ -30,6 +33,7 @@ class DefaultController extends Controller
                         ->getRepository('ComicReaderAdminBundle:Author')
                         ->find($book->getId());
         
+        // Get first pages
         $pages = array();
         for ($i=1;$i<3;$i++)
         {
@@ -41,8 +45,32 @@ class DefaultController extends Controller
             array_push($pages, array('id' => $i, 'path' => $path));
         }
 
-	/* Commentaires */
-
+        // get mark and comment
+        $comments = $this->getDoctrine()
+                         ->getEntityManager()
+                         ->getRepository('ComicReaderAdminBundle:Mark')
+                         ->searchMarks($bookid);
+        $mark = 0;
+        $n = 0;
+        foreach ($comments as $c)
+        {
+            $mark += $c->getMark();
+            $n++;
+        }
+        
+        // calculate stars
+        $stars = array();
+        if ($n > 0)
+        {
+            $mark = round($mark / $n, 1);
+            for (; $mark >= 1.0; $mark--)
+                $stars[] = "full_star";
+            
+            if ($mark >= 0.5)
+                $stars[] = "half_star";
+        }
+        
+	/* Post comment */
 	$form = $this->createFormBuilder(array())
 		->add('login', 'text')
 		->add('mark', 'text')
@@ -67,14 +95,13 @@ class DefaultController extends Controller
 		$em->persist($com);
 		$em->flush();
 	}
-	
-	/* Fin Commentaires */
+	/* End post comment */
 
         
         return $this->render('ComicReaderAdminBundle:Default:reader.html.twig',
-                             array('bookid' => $bookid,
-                                   'booktitle' => $book->getTitle(),
+                             array('book' => $book,
                                    'bookauthor' => $author->getName(),
+                                   'stars' => $stars,
                                    'pages' => $pages,
 				   'form' => $form->createView()));
     }
