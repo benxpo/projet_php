@@ -97,28 +97,20 @@ class UploadController extends Controller
 				continue;
 			}
 			
-			// Check if the name of the file correspond to the manga's name
-			$temp = explode(".", $name);
-			$shortname = substr($temp[0], 0, strlen($manga));
-			if ($shortname != $manga)
-			{
-				echo " - Not a good name<br />";
-				continue;
-			}
-			
 			// Delete file which does not have valide number
-			$num = substr($temp[0], strlen($shortname), strlen($temp[0]));
-			if (!is_numeric($num))
+			$temp = explode(".", $name);
+			$shortname = $temp[0];
+			if (!is_numeric($shortname))
 			{
-				echo " - Not a good number<br />";
+				echo " - Not a valid number<br />";
 				continue;
 			}
 			
 			// Temporarily rename the file by its number
-			$temp_name = intval($num);
+			$temp_name = intval($shortname);
 			echo "--> New Name : ".$temp_name."<br />";
 			
-			$temp_array = array($temp_name, "png", $zip_entry);
+			$temp_array = array($temp_name, "png", $filebytes);
 			array_push($file_array, $temp_array);
 		}
 	
@@ -143,9 +135,27 @@ class UploadController extends Controller
 			$nb_file += 1;
 		}
 		
-		echo "New Names : <br />";
+		echo "<br />New Names : <br />";
 		for ($n = 0; $n < count($file_array); ++$n)
 			echo $file_array[$n][0]."<br />";
+		
+		
+		// Create the directory
+		$basedir = __DIR__."/../../../../web/bundles/books";
+		if (!is_dir($basedir."/".$author))
+			mkdir($basedir."/".$author, 0777);
+		if (!is_dir($basedir."/".$author."/".$manga))
+			mkdir($basedir."/".$author."/".$manga, 0777);
+		
+		for ($n = 0; $n < count($file_array); ++$n)
+		{
+			$fp = fopen($basedir."/".$author."/".$manga."/".$file_array[$n][0].".".$file_array[$n][1], 'w');
+			fwrite($fp, $file_array[$n][2]);
+			fclose($fp);
+		}
+		
+		// Close the Zip file
+		zip_close($zip);
         }
 	
         return $this->render('ComicReaderAdminBundle:Default:upload.html.twig', array('form' => $form->createView(),));
