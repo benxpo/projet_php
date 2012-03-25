@@ -39,9 +39,9 @@ class DefaultController extends Controller
         for ($i=1;$i<3;$i++)
         {
             if ($i < 10)
-                $path = sprintf("%s0%d.png", $book->getServerPath(), $i);
+                $path = sprintf("%s%d.png", $book->getServerPath(), $i);
             else
-                $path = sprintf("%s/%s%d.png", $book->getServerPath(), $i);
+                $path = sprintf("%s%d.png", $book->getServerPath(), $i);
 
             array_push($pages, array('id' => $i, 'path' => $path));
         }
@@ -136,9 +136,9 @@ class DefaultController extends Controller
             
             $id = intval($lastpageid) + 1;
             if ($id < 10)
-                $path = sprintf("%s_p0%d.png", $book->getServerPath(), $id);
+                $path = sprintf("%s%d.png", $book->getServerPath(), $id);
             else
-                $path = sprintf("%s/%s_p%d.png", $book->getServerPath(), $id);
+                $path = sprintf("%s%d.png", $book->getServerPath(), $id);
             $page = array('id' => $id, 'path' => $path);
             
             $pages = array($page);
