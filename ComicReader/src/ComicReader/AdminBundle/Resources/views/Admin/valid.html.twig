@@ -1,5 +1,11 @@
+<table border="1">
+<tr><td>Name</td><td>Desc</td><td>validation</td><td>suppression</td></tr>
 {% for c in tab %}
 <tr><td>
-{{c.Name}}</td><td>
-{{c.Description}}</td><td>Modifier</td><td>Supprimer</td></tr>
+{{c.Title}}</td><td>
+{{c.Description}}</td>
+<td><a href="{{ asset('app_dev.php/valB/' ~ c.Id) }}">-validation-</a></td>
+<td><a href="{{ asset('app_dev.php/delB/' ~ c.Id) }}">-suppression-</a></td></tr>
 {%endfor %}
+
+</table>

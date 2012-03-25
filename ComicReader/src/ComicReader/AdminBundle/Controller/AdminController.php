@@ -112,16 +112,6 @@ class AdminController extends Controller
 					->getEntityManager()
 					->getRepository('ComicReaderAdminBundle:Book')
 					->findAllNotValidated();
-		echo "<table><tr><td>Name</td><td>Desc</td><td></td><td></td></tr>";
-		foreach ($tab as $c)
-		{
-			echo "<tr><td>";
-			echo $c->getName() . "</td><td>";
-			echo $c->getDescription() . "</td><td>";
-			echo "Valider" . "</td><td>";
-			echo "Supprimer" . "</td></tr>";
-		}
-		echo "</table>";
 
 		return array('tab' => $tab);
 
@@ -143,17 +133,8 @@ class AdminController extends Controller
 					->getEntityManager()
 					->getRepository('ComicReaderAdminBundle:Book')
 					->findAllValidated();
-		echo "<table><tr><td>Name</td><td></td><td></td></tr>";
-		foreach ($tab as $c)
-		{
-			echo "<tr><td>";
-			echo $c->getTitle() . "</td><td>";
-			echo "Modifier" . "</td><td>";
-			echo "Supprimer" . "</td></tr>";
-		}
-		echo "</table>";
 
-		return array();
+		return array('tab' => $tab);
 	}
 	/**
      * @Route("/user")
@@ -169,20 +150,70 @@ class AdminController extends Controller
 		}
 		$tab = $this->getDoctrine()->getRepository("ComicReaderAdminBundle:T_User")->findAll();
 
-		echo "<table><tr><td>Login</td><td>Admin</td><td>Mod</td><td></td><td></td></tr>";
-		foreach ($tab as $c)
-		{
-			echo "<tr><td>";
-			echo $c->getLogin() . "</td><td>";
-			echo $c->getis_Admin() . "</td><td>";
-			echo $c->getis_Mod() . "</td><td>";
-			echo "Modifier" . "</td><td>";
-			echo "Supprimer" . "</td></tr>";
-		}
-		echo "</table>";
-
-		return array();
+		return array('tab' => $tab);
 	}
+
+    /**
+     * @Route("/delU/{id}")
+     */
+    public function delUAction($id, Request $request)
+    {
+	$session = $this->get("session");
+	$name = $session->get('name');
+	if ($name == "")
+	{
+		return $this->redirect('login');
+	}
+
+	$user = $this->getDoctrine()->getRepository("ComicReaderAdminBundle:T_User")->find($id);
+
+	$em = $this->getDoctrine()->getEntityManager();
+	$em->remove($user);$em->flush();
+	
+
+	return $this->redirect('../user');
+    }
+
+    /**
+     * @Route("/delB/{id}")
+     */
+    public function delBAction($id, Request $request)
+    {
+	$session = $this->get("session");
+	$name = $session->get('name');
+	if ($name == "")
+	{
+		return $this->redirect('login');
+	}
+
+	$user = $this->getDoctrine()->getRepository("ComicReaderAdminBundle:Book")->find($id);
+
+	$em = $this->getDoctrine()->getEntityManager();
+	$em->remove($user);$em->flush();
+	
+
+	return $this->redirect('../book');
+    }
+    /**
+     * @Route("/valB/{id}")
+     */
+    public function valBAction($id, Request $request)
+    {
+	$session = $this->get("session");
+	$name = $session->get('name');
+	if ($name == "")
+	{
+		return $this->redirect('login');
+	}
+
+	$book = $this->getDoctrine()->getRepository("ComicReaderAdminBundle:Book")->find($id);
+	$book->setValidated(1);
+	$em = $this->getDoctrine()->getEntityManager();
+	$em->persist($book);$em->flush();
+	
+
+	return $this->redirect('../valid');
+    }
     /**
      * @Route("/addU")
      * @Template
@@ -193,7 +224,7 @@ class AdminController extends Controller
 	$name = $session->get('name');
 	if ($name == "")
 	{
-		//return $this->redirect('login');
+		return $this->redirect('login');
 	}
 
 	$form = $this->createFormBuilder(array())
@@ -210,8 +241,14 @@ class AdminController extends Controller
 
 		$login = $data['login'];
 		$pass = $data['password'];
-		$ad = 0;
-		$mo = 0;
+		if ($data['admin'])
+			$ad = 1;
+		else
+			$ad = 0;
+		if ($data['modo'])
+			$mo = 1;
+		else
+			$mo = 0;
 
 		$user = new T_User;
 		$user->setLogin($login);
@@ -221,16 +258,16 @@ class AdminController extends Controller
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($user);$em->flush();
-		
+		return $this->redirect('user');	
 	}
 	return $this->render('ComicReaderAdminBundle:Admin:addU.html.twig',
 			array('form' => $form->createView(),));
     }
-	/**
-     * @Route("/modU")
+    /**
+     * @Route("/modU/{id}")
      * @Template
      */
-    public function modUAction(Request $request)
+    public function modUAction($id, Request $request)
     {
 		$session = $this->get("session");
 		$name = $session->get('name');
@@ -240,28 +277,50 @@ class AdminController extends Controller
 		}
 
 		$form = $this->createFormBuilder(array())
-		->add('login', 'text')
-		->add('password', 'password')
+		->add('login', 'text', array("required" => false))
+		->add('password', 'text', array("required" => false))
+		->add('admin', 'checkbox', array("required" => false))
+		->add('modo', 'checkbox', array("required" => false))
 		->getForm();
 
-        if ($request->getMethod() == 'POST')
+        	if ($request->getMethod() == 'POST')
 		{
-			$form->bindRequest($request);
-            $data = $form->getData();
+			$form->bindRequest($request);	
+           		$data = $form->getData();
+
+			$user = $this->getDoctrine()->getRepository("ComicReaderAdminBundle:T_User")->
+					find($id);
+
+			if ($data['admin'])
+				$user->setis_Admin(1);
+			else
+				$user->setis_Admin(0);
+
+			if ($data['modo'])
+				$user->setis_Mod(1);
+			else
+				$user->setis_Mod(0);
+			if (isset($data['login']))
+				$user->setLogin($data['login']);
+			if (isset($data['password']))
+				$user->setPassword(md5($data['password']));
+
+			$em = $this->getDoctrine()->getEntityManager();
+			$em->persist($user);$em->flush();
 			
-			$login = $data['login'];
 
-
+			return $this->redirect('../user');				
 		}
+
  		return $this->render('ComicReaderAdminBundle:Admin:modU.html.twig',
-				array('form' => $form->createView(),));
+				array('id' => $id,'form' => $form->createView(),));
 	}
 
 	/**
-     * @Route("/modB")
+     * @Route("/modB/{id}")
      * @Template
      */
-    public function modBAction(Request $request)
+    public function modBAction($id, Request $request)
     {
 		$session = $this->get("session");
 		$name = $session->get('name');
@@ -270,21 +329,36 @@ class AdminController extends Controller
 			return $this->redirect('login');
 		}
 
+
 		$form = $this->createFormBuilder(array())
-		->add('login', 'text')
-		->add('password', 'password')
+		->add('title', 'text', array("required" => false))
+		->add('description', 'textarea', array("required" => false))
+		->add('path', 'text', array("required" => false))
 		->getForm();
 
-        if ($request->getMethod() == 'POST')
+        	if ($request->getMethod() == 'POST')
 		{
-			$form->bindRequest($request);
-            $data = $form->getData();
+			$form->bindRequest($request);	
+           		$data = $form->getData();
+
+			$b = $this->getDoctrine()->getRepository("ComicReaderAdminBundle:Book")->
+					find($id);
+
+			if (isset($data['title']))
+				$b->setLogin($data['title']);
+			if (isset($data['description']))
+				$b->setPassword(md5($data['description']));
+			if (isset($data['path']))
+				$b->setPassword(md5($data['path']));
+
+			$em = $this->getDoctrine()->getEntityManager();
+			$em->persist($b);$em->flush();
 			
-			$login = $data['login'];
 
-
+			return $this->redirect('../book');				
 		}
- 		return $this->render('ComicReaderAdminBundle:Admin:modB.html.twig',
-				array('form' => $form->createView(),));
+
+ 		return $this->render('ComicReaderAdminBundle:Admin:modU.html.twig',
+				array('id' => $id,'form' => $form->createView(),));
 	}
 }

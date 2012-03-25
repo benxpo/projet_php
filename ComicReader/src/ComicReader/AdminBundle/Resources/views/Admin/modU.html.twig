@@ -1,4 +1,4 @@
-<form action="{{ path('comicreader_admin_admin_modu') }}" method="post" enctype="multipart/form-data">
+<form action="{{ asset('app_dev.php/modU/' ~ id) }}" method="post" enctype="multipart/form-data">
     {{ form_widget(form) }}
 
     <input type="submit" />
