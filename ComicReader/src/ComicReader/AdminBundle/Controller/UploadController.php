@@ -37,18 +37,16 @@ class UploadController extends Controller
 		$manga = $data['manga_name'];
 		$filename = $data['zip_file'];
 		//$filename = $_FILES['form']['name']['zip_file'];
-		$source = $_FILES['form']['tmp_name']['zip_file'];
-		$type = $_FILES['form']['type']['zip_file'];
-		 
+		//$source = $_FILES['form']['tmp_name']['zip_file'];
+		//$type = $_FILES['form']['type']['zip_file'];
 		/*
 		echo "Author name : ".$author."<br />";
 		echo "Manga name : ".$manga."<br />";
 		echo "Zip file : ".$filename."<br />";
 		echo "File name : ".$filename."<br />";
 		echo "source path : ".$source."<br />";
-		echo "type : ".$type."<br />";
-		*/
-		
+		echo "type : ".$type."<br />";		
+		*//*
 		// Check if the uploaded file is a Zip file
 		$zip_types = array('application/zip', 'application/x-zip-compressed',
 				'multipart/x-zip', 'application/s-compressed');  
@@ -65,7 +63,7 @@ class UploadController extends Controller
 		{
 			echo "Please select a Zip file";
 			return $this->render('ComicReaderAdminBundle:Default:upload.html.twig', array('form' => $form->createView(),));
-		}
+		}*/
 		
 		// Unzip the file
 		$zip = zip_open($filename);
