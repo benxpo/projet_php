@@ -39,9 +39,9 @@ class DefaultController extends Controller
         for ($i=1;$i<3;$i++)
         {
             if ($i < 10)
-                $path = sprintf("%s_p0%d.png", $book->getServerPath(), $i);
+                $path = sprintf("%s0%d.png", $book->getServerPath(), $i);
             else
-                $path = sprintf("%s/%s_p%d.png", $book->getServerPath(), $i);
+                $path = sprintf("%s/%s%d.png", $book->getServerPath(), $i);
 
             array_push($pages, array('id' => $i, 'path' => $path));
         }
@@ -107,7 +107,7 @@ class DefaultController extends Controller
         
         return $this->render('ComicReaderAdminBundle:Default:reader.html.twig',
                              array('book' => $book,
-                                   'thumbnail' => sprintf("%s_p01.png", $book->getServerPath()),
+                                   'thumbnail' => sprintf("%s01.png", $book->getServerPath()),
                                    'bookauthor' => $author->getName(),
                                    'uploader' => $uploader->getLogin(),
                                    'stars' => $stars,
