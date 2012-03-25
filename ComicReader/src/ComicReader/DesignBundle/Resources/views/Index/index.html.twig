@@ -26,31 +26,22 @@
 	<div id="contenu">
 	  <div class="hasard">
 	    <div class="hasardTitre">Au hasard</div>
-<!--
-{% if books is empty %}
-		<em>Aucun livre</em>
-{% else %}
-{% set fjb = random(books) %}
-	      <div class="livreNom"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></div>
-{% for star in fjb.stars %}
-		<img class="hasardNote" src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
+	      <div class="randomName"><a href={{ asset('app_dev.php/reader/' ~ random.book.id) }} >{{ random.book.Title }}</a></div>
+	      <div class="randomMark">
+{% for star in random.stars %}
+		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
 		<em>No mark</em>
 {% endfor %}
-
-	    <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
-    	    <div class="hasardImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '01.png') }}') no-repeat top center;"></div>
-	    </a>
-	      <div class="hasardAuteur"><u>Draw by</u> : {{ fjb.author.Name }}</div>
-	      <div class="hasardPseudo"><u>Uploaded by</u> : {{ fjb.Uploader.Login}}</div>
-{% endif %}
--->
-<!--	    <div class="hasardNom">NOM</div>
-	    <div class="hasardNote">Note</div>
-	    <div class="hasardImage">Image</div>
-	    <div class="hasardAuteur">Auteur</div>
-	    <div class="hasardPseudo">^_^ Pseudo</div>-->
+	      </div>
+	      <a href={{ asset('app_dev.php/reader/' ~ random.book.id) }} >
+		<div class="randomThumbnail" style="background: url('{{ asset('bundles/books/' ~ random.book.ServerPath ~ '1.png') }}') no-repeat top center;"></div>
+	      </a>
+	      <div class="randomAuthor">{{ random.author.Name }}</div>
+	      <div class="randomUploader">{{ random.uploader.Login }}</div>
+	      <div class="randomDescription">{{ random.book.Description }}</div>
 	  </div>
+	  
 	  <div class="hasard">
 	    <div class="hasardTitre">On recherche</div>
 	    <div class="top5Numero"><p style="padding-left:20px;">- Naruto chapitre 568</p></div>
@@ -71,12 +62,13 @@
 	    </div>
 {% endfor %}
 	  </div>
+	  
 	  <div class="sortie">
 	    <div class="hasardTitre">Les dernieres sorties</div>
 {% for fjb in lastbooks %}
 	    <div class="sortiePremier">
 	      <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
-		<div class="sortiePremierImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '01.png') }}') no-repeat top center;"></div>
+		<div class="sortiePremierImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '1.png') }}') no-repeat top center;"></div>
 	      </a>
 	      <div class="sortiePremierNom"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></div>
 	      <div class="sortiePremierNote">

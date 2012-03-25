@@ -25,7 +25,10 @@ class DefaultController extends Controller
                          ->findLast();
                 $fullJoinBooks = array();
         
+	$randomNumber = rand(0, count($lastbooks) - 1);
+	
         $lastfullJoinBooks = array();
+	$random = null;
 	$i = 0;
         foreach ($lastbooks as $b)
         {
@@ -55,7 +58,11 @@ class DefaultController extends Controller
 	    
 	    if ($i < 3)
 		$lastfullJoinBooks[] = $fjb;
+		
+	    if ($i == $randomNumber)
+		$random = $fjb;
 	    $i++;
+	    
 	    
 	    if ($fifth != null)
 	    {
@@ -193,7 +200,7 @@ class DefaultController extends Controller
 	}
  
 	return $this->render('ComicReaderDesignBundle:Index:'.$name.'.html.twig',
-                             array('books' => $lastfullJoinBooks,
+                             array('random' => $random,
 				   'topbooks' => $topfullJoinBooks,
 				   'lastbooks' => $lastfullJoinBooks));
     }
