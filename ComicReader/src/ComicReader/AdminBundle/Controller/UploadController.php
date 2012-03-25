@@ -31,7 +31,7 @@ class UploadController extends Controller
         if ($request->getMethod() == 'POST')
 	{
 		$form->bindRequest($request);
-
+		print_r($_FILES);echo "<br /><br />";
 		$data = $form->getData();
 		$author = $data['author_name'];
 		$manga = $data['manga_name'];
@@ -138,8 +138,18 @@ class UploadController extends Controller
 		for ($n = 0; $n < count($file_array); ++$n)
 			echo $file_array[$n][0]."<br />";
 		
-		
-		// Create the directory
+		// Save the author in the database if he doesnt exist
+	/* TODO
+		$bdd_author = "SELECT * FROM ........";
+		if ($bdd_author == NULL)
+		{
+			$bdd_author = new Author;
+			$bdd_author->setName($author);
+			$em = $this->getDoctrine()->getEntityManager();
+			$em->persist($bdd_author);$em->flush();
+		}
+	*/		
+		// Create the directory and save the files
 		$basedir = __DIR__."/../../../../web/bundles/books";
 		if (!is_dir($basedir."/".$author))
 			mkdir($basedir."/".$author, 0777);
@@ -151,6 +161,16 @@ class UploadController extends Controller
 			$fp = fopen($basedir."/".$author."/".$manga."/".$file_array[$n][0].".".$file_array[$n][1], 'w');
 			fwrite($fp, $file_array[$n][2]);
 			fclose($fp);
+			
+	/* TODO
+			// Save the manga in the database
+			$bdd_manga = new Book;
+			$bdd_manga->setServerPath($author."/".$manga);
+			$bdd_manga->setTitle($manga);
+			$bdd_manga->setFK_Author($bdd_author);
+			$em = $this->getDoctrine()->getEntityManager();
+			$em->persist($bdd_author);$em->flush();
+	*/
 		}
 		
 		// Close the Zip file
