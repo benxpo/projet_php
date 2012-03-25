@@ -25,4 +25,20 @@ class T_UserRepository extends EntityRepository
     
         return $qb->getQuery()->getResult() != null;
     }
+    
+    public function getUser($login)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('u')
+            ->from('ComicReaderAdminBundle:T_User', 'u')
+            ->where('u.Login = :login')
+            ->setParameter('login', $login);
+    
+        $login = $qb->getQuery()->getResult();
+        if ($login != null)
+            return $login[0];
+        else
+            return null;
+    }
 }
