@@ -86,12 +86,27 @@ class UploadController extends Controller
 			echo "Name : ".$name."<br />";
 			//echo "PNG : ".$filebytes;
 			
+			$format_png = false;
+			$format_jpg = false;
 			// Check if the file is a PNG
-			if (!($filebytes[0] == chr(137) && $filebytes[1] == chr(80) && $filebytes[2] == chr(78) &&
+			if ($filebytes[0] == chr(137) && $filebytes[1] == chr(80) && $filebytes[2] == chr(78) &&
 				$filebytes[3] == chr(71) && $filebytes[4] == chr(13) && $filebytes[5] == chr(10) &&
-				$filebytes[6] == chr(26) && $filebytes[7] == chr(10)))
+				$filebytes[6] == chr(26) && $filebytes[7] == chr(10))
 			{
-				echo " - Not a PNG<br />";
+				echo " - PNG<br />";
+				$format_png = true;
+			}
+			
+			// Check if the file is a JPG
+			if ($filebytes[0] == chr(255) && $filebytes[1] == chr(216) && $filebytes[2] == chr(255))
+			{
+				echo " - JPG<br />";
+				$format_jpg = true;
+			}
+			
+			if ($format_png == false && $format_jpg === false)
+			{
+				echo " - Not a JPG nor a JPG<br />";
 				continue;
 			}
 			
@@ -108,7 +123,11 @@ class UploadController extends Controller
 			$temp_name = intval($shortname);
 			echo "--> New Name : ".$temp_name."<br />";
 			
-			$temp_array = array($temp_name, "png", $filebytes);
+			$format_type = "png";
+			if ($format_jpg)
+				$format_type = "jpg";
+			
+			$temp_array = array($temp_name, $format_type, $filebytes);
 			array_push($file_array, $temp_array);
 		}
 		
