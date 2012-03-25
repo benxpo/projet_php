@@ -8,7 +8,6 @@ else
 {
     $url = 'app_dev.php/search/';
 }
-
 ?>
 <script type="text/javascript">
 <!--

@@ -5,12 +5,14 @@
 	<title>All books</title>
     </head>
     <body>
-      <div id="main">
+  <img src="{{ asset('bundles/comicreaderdesign/images/fond.jpg') }}" style="position:fixed; left: 0px; top:0px; z-index:-1;width: 100%;"/>
+  <div id="main">
+
 	<div id="ban"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" /></div>
 
-	<div id="accueil">Accueil</div>
-	<div id="liste">Liste</div>
-	<div id="ajouter">Ajouter</div>
+	<div id="accueil"><a class="lien" href="{{ path('ComicReader_accueil') }}">Accueil</a></div>
+	<div id="liste"><a class="lien" href="{{ path('ComicReader_liste') }}">Liste</a></div>
+	<div id="ajouter"><a class="lien" href="{{ path('ComicReader_ajout') }}">Ajouter</a></div>
 	<div id="search">
 	    <form method="POST" action="{{ asset('search_redirect.php') }} ">
 	      <input name="search" value="" size="22" maxlength="255" onFocus="this.value=''" />

@@ -1,14 +1,110 @@
-<table border="1">
-<tr><td>Id</td><td>Login</td><td>Admin</td><td>Mod</td><td>Modifier</td><td>Supprimer</td></tr>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Menu de l'interface d'administration</title>
+	</head>
+	<style>
+		a {outline: 0;}
+		a img {border: 0px; text-decoration: none;}
+		a:link, a:visited {
+			color: black;
+			padding: 0 1px;
+			text-decoration: none;
+		}
+		a:hover, a:active {
+			background-color: #3366DD;
+			color: #fff;
+			text-decoration: none;
+			text-shadow: 1px 1px 1px #333;
+		}
+	</style>
+<style>
+td
+{
+font-size: 87.5%;
+text-align : center;
+width : 175px;
+}
+</style>
+	<body style="
+		background: #000;
+		margin:0 auto; 
+		padding:0; 
+		text-align: left;
+		
+		">
+
+<div id="header" style="
+	width : 840px;
+	height: 150px;
+	background: #fff;
+	margin : auto;
+	">
+	logo
+</div>
+
+<div style="
+	background: #fff;
+	margin-left : auto;
+	margin-right : auto;
+	margin-top : 50px;
+	overflow: hidden;
+	padding: 20px;
+	width: 800px;
+	text-align : center
+ 	left:50%
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	">
+<h4 style="padding:10px">Vous êtes actuellement sur l'interface d'administration des utilisateurs</h4>
+<p style="margin-left:30px; margin-top:-15px">Vous pouvez modifiez les informations d'un
+ utilisateur dans la liste ci-dessous, ajouter de nouveau utilisateurs à la base ou le supprimer définitivement.</p>
+<br/>
+<p style="text-align:center;"><a  href="{{ path('comicreader_admin_admin_addu') }}"><b>Ajouter un utilisateur</b></a></p>
+<br/>
+
+<table border="2" align="center" width="700" cellspacing="1px" >
+<tr><td><b>Id</b></td><td><b>Login</b></td><td><b>Administrateur</b></td>
+<td><b>Modérateur</b></td><td><b>Modifier</b></td><td><b>Supprimer</b></td></tr>
 {% for c in tab %}
 <tr><td>
 {{c.Id}}</td><td>
 {{c.Login}}</td><td>
 {{c.is_Admin}}</td><td>
 {{c.is_Mod}}</td>
-<td><a href="{{ asset('app_dev.php/modU/' ~ c.Id) }}">-modification-</a></td>
-<td><a href="{{ asset('app_dev.php/delU/' ~ c.Id) }}">-suppression-</a></td>
+<td><a href="{{ asset('app_dev.php/modU/' ~ c.Id) }}">Modifier</a></td>
+<td><a href="{{ asset('app_dev.php/delU/' ~ c.Id) }}">Supprimer</a></td>
 </tr>
 {%endfor %}
 </table>
-<br/><a href="{{ path('comicreader_admin_admin_addu') }}">-add user-</a>
+<br/>
+
+
+
+<br/><br/><br/>
+</div>
+<div id="footer" style="
+	background: #fff;
+	margin: 0 auto 0 auto;
+	margin-top : 50px;
+	overflow: hidden;
+	padding: 20px;
+	width: 800px;
+	text-align : center;
+
+	border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-webkit-border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+
+	">
+	<p style="text-align:center">
+		<a  href="{{ path('comicreader_admin_admin_menu') }}"><b>Retour au menu</b></a><br/><br/>
+		<a  href="{{ asset('app_dev.php/deco') }}"><b>Deconnexion</b></a>
+	</p>
+</div>
+</body>
+</html>
