@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class MarkRepository extends EntityRepository
 {
+    public function searchMarks($bookid)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('m')
+            ->from('ComicReaderAdminBundle:Mark', 'm')
+            ->where('m.FK_Book = :value')
+            ->setParameter('value', $bookid);
+    
+        return $qb->getQuery()->getResult();
+    }
 }
