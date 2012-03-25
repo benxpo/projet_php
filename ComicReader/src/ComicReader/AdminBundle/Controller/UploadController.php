@@ -37,8 +37,8 @@ class UploadController extends Controller
 		$manga = $data['manga_name'];
 		$filename = $data['zip_file'];
 		//$filename = $_FILES['form']['name']['zip_file'];
-		//$source = $_FILES['form']['tmp_name']['zip_file'];
-		//$type = $_FILES['form']['type']['zip_file'];
+		$source = $_FILES['form']['tmp_name']['zip_file'];
+		$type = $_FILES['form']['type']['zip_file'];
 		/*
 		echo "Author name : ".$author."<br />";
 		echo "Manga name : ".$manga."<br />";
@@ -46,7 +46,7 @@ class UploadController extends Controller
 		echo "File name : ".$filename."<br />";
 		echo "source path : ".$source."<br />";
 		echo "type : ".$type."<br />";		
-		*//*
+		*/
 		// Check if the uploaded file is a Zip file
 		$zip_types = array('application/zip', 'application/x-zip-compressed',
 				'multipart/x-zip', 'application/s-compressed');  
@@ -63,7 +63,7 @@ class UploadController extends Controller
 		{
 			echo "Please select a Zip file";
 			return $this->render('ComicReaderAdminBundle:Default:upload.html.twig', array('form' => $form->createView(),));
-		}*/
+		}
 		
 		// Unzip the file
 		$zip = zip_open($filename);
@@ -111,25 +111,26 @@ class UploadController extends Controller
 			$temp_array = array($temp_name, "png", $filebytes);
 			array_push($file_array, $temp_array);
 		}
-	
+		
 		// Rename and order the files
 		$nb_file = 1;
 		for ($n = 0; $n < count($file_array); ++$n)
 		{
-	
 			$min_index = 0;
 			$min_value = 1000000;
 			for ($i = 0; $i < count($file_array); ++$i)
 			{
-				if (intval($file_array[$n][0]) < $min_value)
+				if (!is_numeric($file_array[$i][0]))
+					continue;
+				if (intval($file_array[$i][0]) < $min_value)
 				{
-					$min_value = intval($file_array[$n][0]);
+					$min_value = intval($file_array[$i][0]);
 					$min_index = $i;
 				}
 			}
-		
+			
 			// Rename the file
-			$file_array[$n][0] = $author."_".$manga."_".$nb_file.".".$file_array[$n][1];
+			$file_array[$min_index][0] = $author."_".$manga."_".$nb_file.".".$file_array[$min_index][1];
 			$nb_file += 1;
 		}
 		
