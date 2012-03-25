@@ -1,1 +1,14 @@
+<table border="1">
+<tr><td>Id</td><td>Login</td><td>Admin</td><td>Mod</td><td>Modifier</td><td>Supprimer</td></tr>
+{% for c in tab %}
+<tr><td>
+{{c.Id}}</td><td>
+{{c.Login}}</td><td>
+{{c.is_Admin}}</td><td>
+{{c.is_Mod}}</td>
+<td><a href="{{ asset('app_dev.php/modU/' ~ c.Id) }}">-modification-</a></td>
+<td><a href="{{ asset('app_dev.php/delU/' ~ c.Id) }}">-suppression-</a></td>
+</tr>
+{%endfor %}
+</table>
 <br/><a href="{{ path('comicreader_admin_admin_addu') }}">-add user-</a>

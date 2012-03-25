@@ -1,0 +1,11 @@
+<table border="1">
+<tr><td>Id</td><td>title</td><td>Modifier</td><td>Supprimer</td></tr>
+{% for c in tab %}
+<tr><td>
+{{c.Id}}</td><td>
+{{c.Title}}</td><td>
+<td><a href="{{ asset('app_dev.php/modB/' ~ c.Id) }}">-modification-</a></td>
+<td><a href="{{ asset('app_dev.php/delB/' ~ c.Id) }}">-suppression-</a></td>
+</tr>
+{%endfor %}
+</table>
