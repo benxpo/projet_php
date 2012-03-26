@@ -27,64 +27,41 @@
 	</div></div>
 
 
-
-
 	<div id="contenu">
 
-	  <div class="hasard"><h4>Au hasard</h4>
-
-			<h4  style="text-align:left; padding-left : 15px">titre</h4>
-			<h5 style="text-align:left; padding-left : 15px"><i>author</i></h5>
-		<p style="text-align:left; padding-left : 20px; font-size:12px; width : 400px">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ligula felis,
- condimentum at volutpat nec, elementum a enim. Suspendisse potenti.
- Curabitur consectetur ultrices metus, laoreet luctus ante malesuada nec.
- Aliquam erat volutpat. Nunc metus neque, viverra id cursus eget.
-		</p>
-	<p style="float: right; margin-top: -200px; margin-right: 30px;">
-		<img style="width:130px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/>
-
-	</p>
-
+	  <div class="hasard">
+	    <h4>Au hasard</h4>
+	    <h4  style="text-align:left; padding-left : 15px">{{ random.book.Title }}</h4>
+	    <h5 style="text-align:left; padding-left : 15px"><i>{{ random.Author.Name }}</i></h5>
+	    <p style="text-align:left; padding-left : 20px; font-size:12px; width : 400px">
+	      {{ random.Book.Description }}
+	    </p>
+	    <p style="float: right; margin-top: -200px; margin-right: 30px;">
+		<img style="width:130px; " src="{{ asset('bundles/books/' ~ random.book.ServerPath ~ '1.png') }}" alt="image"/>
+	    </p>
 	  </div>
 
 	  <div class="top"><h4>Le top 3</h4>
-		<div style="width : 200px;height: 150px; float:left;">
-			<p>
-			<img style="height: 100px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/><br/>title
-			</p>
-		</div>
-		<div style="width : 200px;height: 150px;float:left;">
-			<p >
-			<img style="height: 100px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/><br/>title
-			</p>
-		</div>
-		<div style="width : 200px;height: 150px;float:left;">
-			<p >
-			<img style="height: 100px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/><br/>title
-			</p>
-		</div>
+{% for b in topbooks %}
+	    <div style="width : 200px;height: 150px; float:left;">
+	      <p>
+		<img style="height: 100px; " src="{{ asset('bundles/books/' ~ b.book.ServerPath ~ '1.png') }}" alt="image"/>
+		<br/>
+		{{ b.Book.Title }} ({{ b.Mark }})
+	      </p>
+	    </div>
+{% endfor %}
 	  </div>
 
 	  <div class="sortie"><h4 style="padding:20px">Dernieres sorties</h4>
+{% for b in lastbooks %}
 		<div style="width: 300px;height:120px; margin:auto; margin-top:5px;">
-			<p style="float:left; margin-top: -164px; margin-left: 20px;">
-			<img style="height: 120px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/>
-			</p>
-			titre<br/>date
+		  <p style="float:left; margin-top: -164px; margin-left: 20px;">
+		    <img style="height: 120px; " src="{{ asset('bundles/books/' ~ b.book.ServerPath ~ '1.png') }}" alt="image"/>
+		  </p>
+		  {{ b.Book.Title }}
 		</div>
-		<div style="width: 300px;height:120px;  margin:auto; margin-top:5px">
-			<p style="float:left; margin-top: -39px; margin-left: 20px;">
-			<img style="height: 120px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/>
-			</p>
-			titre<br/>date
-		</div>
-		<div style="width: 300px;height:120px;  margin:auto; margin-top:5px">
-			<p style="float:left; margin-top: 0px; margin-left: -80px;">
-			<img style="height: 120px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/>
-			</p>
-			<span style="margin-left: -99px;">titre</span><br/>date
-		</div>
+{% endfor %}
 	  </div>
 
 
