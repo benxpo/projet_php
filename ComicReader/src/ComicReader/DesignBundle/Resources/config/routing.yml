@@ -2,11 +2,7 @@ ComicReader_accueil:
     pattern: /
     defaults: { _controller: ComicReaderDesignBundle:Default:index, name:"index" }
 ComicReader_ajout:
-    pattern: /ajout
-    defaults: { _controller: ComicReaderDesignBundle:Default:index, name:"ajout" }
-ComicReader_livre:
-    pattern: /livre
-    defaults: { _controller: ComicReaderDesignBundle:Default:index, name:"livre" }
+    pattern: ../upload
 ComicReader_liste:
     pattern: ../search
 
