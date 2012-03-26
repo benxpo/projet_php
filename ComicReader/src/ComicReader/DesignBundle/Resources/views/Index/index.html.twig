@@ -32,9 +32,9 @@
 	  <div class="hasard">
 	    <h4>Au hasard</h4>
 {% for random in randombooks %}
-	    <h4  style="text-align:left; padding-left : 15px">{{ random.book.Title }}</h4>
-	    <h5 style="text-align:left; padding-left : 15px"><i>{{ random.Author.Name }}</i></h5>
-	    <p style="text-align:left; padding-left : 20px; font-size:12px; width : 400px">
+	    <h4  style="text-align:left; padding-left : 40px">{{ random.book.Title }}</h4>
+	    <h5 style="text-align:left; padding-left : 50px"><i>{{ random.Author.Name }}</i></h5>
+	    <p style="text-align:left; padding-left : 40px; font-size:12px; width : 400px">
 	      {{ random.Book.Description }}
 	    </p>
 	    <p style="float: right; margin-top: -200px; margin-right: 30px;">
@@ -47,7 +47,15 @@
 
 	  <div class="top"><h4>Le top 3</h4>
 {% for b in topbooks %}
-	    <div style="width : 200px;height: 150px; float:left;">
+	    <div style="
+			
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			margin:auto;
+			margin-left : 8px;
+			 padding:20px; background:#fff
+			width : 200px;height: 130px; float:left;">
 	      <p>
 		<img style="height: 100px; " src="{{ asset('bundles/books/' ~ b.book.ServerPath ~ '1.png') }}" alt="image"/>
 		<br/>
@@ -59,13 +67,13 @@
 {% endfor %}
 	  </div>
 
-	  <div class="sortie"><h4 style="padding:20px">Dernieres sorties</h4>
+	  <div class="sortie"><h4 style="padding-top:20px">Dernieres sorties</h4>
 {% for b in lastbooks %}
 		<div style="width: 300px;height:120px; margin:auto; margin-top:5px;">
-		  <p style="float:left; margin-top: -164px; margin-left: 20px;">
+		  <p style="text-align: left; padding: 15px; ">
 		    <img style="height: 120px; " src="{{ asset('bundles/books/' ~ b.book.ServerPath ~ '1.png') }}" alt="image"/>
-		  </p>
-		  {{ b.Book.Title }}
+		 </p><p style=" margin-top: -130px;">
+		  <span style="margin-left: 20px; ">{{ b.Book.Title }} </span></p>
 		</div>
 {% else %}
 	    <p><em>No book</em></p>
