@@ -196,7 +196,7 @@ class UploadController extends Controller
 		$bdd_manga->setDescription(htmlentities($description));
 		$bdd_manga->setFK_Author(intval($bdd_author->getId()));
 		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($bdd_author);
+		$em->persist($bdd_manga);
 		$em->flush();
 		
 		// Close the Zip file
