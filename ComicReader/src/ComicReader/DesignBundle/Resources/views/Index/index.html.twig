@@ -9,98 +9,85 @@
   <img src="{{ asset('bundles/comicreaderdesign/images/fond.jpg') }}" style="position:fixed; left: 0px; top:0px; z-index:-1;width: 100%;"/>
   <div id="main">
 
-	<div id="ban"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" /></div>
+	<div id="banner"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" />
 
-	<div id="accueil"><a class="lien" href="{{ path('ComicReader_accueil') }}">Accueil</a></div>
-	<div id="liste"><a class="lien" href="{{ path('ComicReader_liste') }}">Liste</a></div>
-	<div id="ajouter"><a class="lien" href="{{ path('ComicReader_ajout') }}">Ajouter</a></div>
-	<div id="recherche">
-	    <form method="POST" action="{{ asset('search_redirect.php') }} ">
-	      <input name="search" value="" size="22" maxlength="255" onFocus="this.value=''" />
-	      <input type="submit" value="Search" />
-	    </form>
-	</div>
-	<div class="clear"></div>
+		<nav><ul>
+			<li class="active"><a class="lien" href="{{ path('ComicReader_accueil') }}">Accueil</a></li>
+			<li><a class="lien" href="{{ path('ComicReader_liste') }}">Liste</a></li>
+			<li><a class="lien" href="{{ path('ComicReader_ajout') }}"><p style="margin-top: -2px">Ajouter</p></a></li></ul></nav>
+			<div id="rech">
+				<div style="margin-top: 7px;">
+				    <form method="POST" action="{{ asset('search_redirect.php') }} ">
+				      <input name="search" value="" size="20" maxlength="255" onFocus="this.value=''" />
+				      <input type="submit" value="Chercher" />
+				    </form>
+				</div>
+			</div>
+		
+	</div></div>
+
+
 
 
 	<div id="contenu">
-	  <div class="hasard">
-	    <div class="hasardTitre">Au hasard</div>
-	      <div class="randomName"><a href={{ asset('app_dev.php/reader/' ~ random.book.id) }} >{{ random.book.Title }}</a></div>
-	      <div class="randomMark">
-{% for star in random.stars %}
-		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
+
+	  <div class="hasard"><h4>Au hasard</h4>
+
+			<h4  style="text-align:left; padding-left : 15px"><a href={{ asset('app_dev.php/reader/' ~ random.book.id) }} >{{ random.book.Title }}</a></h4>
+			{% for star in random.stars %}<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
 		<em>No mark</em>
 {% endfor %}
-	      </div>
-	      <a href={{ asset('app_dev.php/reader/' ~ random.book.id) }} >
-		<div class="randomThumbnail" style="background: url('{{ asset('bundles/books/' ~ random.book.ServerPath ~ '1.png') }}') no-repeat top center;"></div>
-	      </a>
-	      <div class="randomAuthor"><a href="{{ asset('app_dev.php/author/' ~ random.book.FK_Author) }}">{{ random.author.Name }}</a></div>
-	      <div class="randomUploader">{{ random.uploader.Login }}</div>
-	      <div class="randomDescription">{{ random.book.Description }}</div>
+			<h5 style="text-align:left; padding-left : 15px"><i><a href="{{ asset('app_dev.php/author/' ~ random.book.FK_Author) }}">{{ random.author.Name }}</a></i></h5>
+			<h5 style="text-align:left; padding-left : 15px">{{ random.uploader.Login }}</h5>
+		<p style="text-align:left; padding-left : 20px; font-size:12px; width : 400px">
+			{{ random.book.Description }}
+		</p>
+	<p style="float: right; margin-top: -200px; margin-right: 30px;">
+		<img style="width:130px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/>
+
+	</p>
+
 	  </div>
-	  
-	  <div class="hasard">
-	    <div class="hasardTitre">On recherche</div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- Naruto chapitre 568</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- X-Men : L'intégrale 1975-1976</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- Death note chapitre 74</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- Les légendaires tome 5</p></div>
-	    <div class="top5Numero"><p style="padding-left:20px;">- Garfield tome 51</p></div>
-	  </div>
-	  <div class="hasard">
-	    <div class="hasardTitre">TOP 5</div>
 {% for fjb in topbooks %}
-	    <div class="top5Numero">
-	      <p style="padding-left:20px;">
-		<a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
-		   - {{ fjb.book.Title }} ({{ fjb.Mark }})
-		</a>
-	      </p>
-	    </div>
+	  <div class="top"><h4>Le top 3</h4>
+		<div style="width : 200px;height: 150px; float:left;">
+			<p>
+			<img style="height: 100px; " src="http://64.img.v4.skyrock.net/64a/vive-tokio-hotel074/pics/1546011556.jpg" alt="image"/><br/><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >- {{ fjb.book.Title }} ({{ fjb.Mark }})
+			</p>
+		</div>
 {% endfor %}
 	  </div>
-	  
-	  <div class="sortie">
-	    <div class="hasardTitre">Les dernieres sorties</div>
-{% for fjb in lastbooks %}
-	    <div class="sortiePremier">
-	      <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
-		<div class="sortiePremierImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '1.png') }}') no-repeat top center;"></div>
-	      </a>
-	      <div class="sortiePremierNom"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></div>
-	      <div class="sortiePremierNote">
+
+	  <div class="sortie"><h4 style="padding:20px">Dernieres sorties</h4>
+		{% for fjb in lastbooks %}
+		<div style="width: 300px;height:120px; margin:auto; margin-top:5px; text-align: right">
+			<p style="float:left;">
+			<img style="height: 120px; " src="{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '1.png') }}" alt="image"/>
+			</p>
 {% for star in fjb.stars %}
 		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
 		<em>No mark</em>
 {% endfor %}
-	      </div>
-	      <div class="sortiePremierAuteur"><a href="{{ asset('app_dev.php/author/' ~ fjb.book.FK_Author) }}">{{ fjb.author.Name }}</a></div>
-	      <div class="sortiePremierPseudo">{{ fjb.uploader.Login }}</div>
-	    </div>
-{% endfor %}
+<a href="{{ asset('app_dev.php/author/' ~ fjb.book.FK_Author) }}">{{ fjb.author.Name }}</a>
+{{ fjb.uploader.Login }}
+		</div>
 	  </div>
-	  <div class="clear"></div>
-	</div>
+
+
 	  <div id="news">
-	    <div id="newsTitre">Dernieres News</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
-	    <div id="newsContenu">23-03-2012 : Ouverture du site Web !</div>
+		<p style="text-align : center"><b>ComicReader</b><br/><br/>
+
+		Ce site a été mis en place pour regrouper toute une communauté de fans autour<br/> de l'ensemble des supports BD, Mangas, Comics et livres.<br/>
+		Il est prêt à accueillir la plus méconnue des histoires pour la faire partager au monde entier.<br/>
+		Si vous possédez une oeuvre que vous souhaitez partager avec nous, n'hésitez pas à nous le proposer <br/>en uploadant l'ensemble de ses pages sur le site sous format zip ! Sinon, vous pouvez profiter<br/> de l'ensemble des oeuvres déjà présentes sur le site que vous pourrez dérouler en quelques coups de molette !<br/>
+
+		L'ensemble de l'équipe vous souhaite une agréable lecture !<br/>
+		~Antoine Fournier, Thibaud Friedrich, Benjamin Levoir, Vincent Oliveira~
+		</p>
 	  </div>
-  </div>
+      </div>
 </body>
 </html>
 

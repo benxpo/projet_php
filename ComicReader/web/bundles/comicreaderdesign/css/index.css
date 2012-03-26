@@ -10,77 +10,31 @@ a.lien {
 	text-shadow: 1px 1px 1px #333;
 	}
 body {
-	color:black;
-	background-color:white;
 	background-image:{{ asset('bundles/comicreaderdesign/images/fond.jpg') }};
 	background-repeat:repeat;
 	}
 div {
 	text-align:center;
 	}
-div#main{
+#main{
 	margin-left:auto;
 	margin-right:auto;
 	width:960px;
 	border-style:none;
-	}
-div#ban {
+	}#ban {
 	width:100%;
 	height:100px;
 	margin-bottom:10px;
 	}
-div#recherche {
-	border-width: 1px; border-style: solid; border-color: #000000;
-	background-color:#b6d10d;
-	border-radius: 15px;
-	float:right;
-	width:24%;
-	height:60px;
-	}
-input {	
-	margin-top:5px;
-	}
-input.btn {
-	margin-top:5px;
-	}
-div#propos {
-	border-width: 1px; border-style: solid; border-color: #000000;
-	height:100px;
-	}
-div#accueil {
-	border-width: 1px; border-style: solid; border-color: #000000;
-	background-color:#eeb400;
-	border-radius: 15px;
-	vertical-align: middle;
-	width:25%;
-	float:left;
-	height:60px;
-	}
-div#liste {
-	border-width: 1px; border-style: solid; border-color: #000000;
-	background-color:#b6d10d;
-	border-radius: 15px;
-	vertical-align: middle;
-	width:25%;
-	float:left;
-	height:60px;
-	}
-div#ajouter {
-	border-width: 1px; border-style: solid; border-color: #000000;
-	background-color:#b6d10d;
-	border-radius: 15px;
-	vertical-align: middle;
-	width:25%;
-	float:left;
-	height:60px;
-	}
 
-div#contenu {
-	margin-top:20px;
-	width:100%;
-	height:500px;
-	}
 
+<<<<<<< HEAD
+//modif BEn
+#banner {
+	margin: 0 auto;
+
+	padding: 2.5em 0 0 0;
+=======
 div.hasard {
 	overflow: auto;
 	background-color:white;
@@ -135,72 +89,168 @@ div.top5Numero {
 div.videok{
 	height:0px;
 	width:0px;
+>>>>>>> 4b4bbc925ffc47a8b24adc60ac41a79b2f6bc180
 }
-div.sortie {
-	background-color:white;
-	float:left;
-	border-width: 1px; border-style: solid; border-color: #000000;
-	height:100%;
-	width:24%;
+
+	/* Banner */
+	#banner h1 {font-size: 3.571em; line-height: .6;}
+	#banner h1 a:link, #banner h1 a:visited {
+		color: -moz-linear-gradient(top, #b6d10d,#559900);
+		display: block;
+		font-weight: bold;
+		margin: 0 0 .6em .2em;
+		text-decoration: none;
+		width: 800px;
 	}
-div.sortiePremier {
-	width:100%;
-	height:25%;
+	#banner h1 a:hover, #banner h1 a:active {
+		background: none;
+		color: -moz-linear-gradient(top, #eeb400,#eeb400);
+		text-shadow: none;
 	}
-div.sortiePremierImage {
-	float:left;
-	height:100%;
-	width:33%;
-	}
-div.sortiePremierNom {
-	height:25%;
-	width:67%;
-	font-size: 5px;
-	}
-div.sortiePremierNote {
-	height:25%;
-	width:67%;
-	font-size: 5px;
-	}
-div.sortiePremierAuteur {
-	height:25%;
-	width:67%;
-	font-size: 5px;
-	}
-div.sortiePremierPseudo {
-	height:25%;
-	width:67%;
-	font-size: 5px;
-	}
-div#news {
-	border-radius: 15px;
-	background-color:white;
-	margin-top:40px;
-	border-width:1px; border-style:solid; border-color:#000000;
-	width:100%;
-	height:300px;
-	overflow: auto;
-	}
-div#newsTitre {
-	border-bottom-style:solid;
-	border-bottom-color:#000000;
-	border-bottom-width:1px;
-	font-size: 1.5em;
-	margin-top:13px;
-	margin-bottom:10px;
-	font-family:arial;
-	color: #1234c9;
-	text-shadow: 1px 1px 1px #333;
-	width:100%;
-	height:15%;
-	}
-div#newsContenu {
-	margin-bottom:15px;
-	font-size: 1.0em;
-	width:75%;
-	margin-left:auto;
-	margin-right:auto;
-	}
-.clear {
-	clear : both;	
+
+	#banner h1 strong {font-size: 0.36em; font-weight: normal;}
+/* Main Nav */
+#banner nav {
+	background: -moz-linear-gradient(top, #b6d10d,#559900);
+	font-size: 1.143em;
+	height: 40px;
+	line-height: 30px;
+	margin: 0 auto 2em auto;
+	margin-top : 50px;
+	margin-left : 0px;
+	padding: 0;
+	text-align: center;
+	width: 600px;
+
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
+
+#banner nav ul {list-style: none; margin: 0 auto; width: 600px; margin-left : -25px; }
+#banner nav li {float: left; display: inline; margin-top: -11px;}
+
+#rech
+{
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+
+width : 350px;
+height: 40px;
+background: -moz-linear-gradient(top, #b6d10d,#559900);
+margin-top: -77px;
+
+float:right
+
+
+}
+
+
+#banner nav a:link, #banner nav a:visited {
+	color: #000;
+	display: inline-block;
+	height: 30px;
+	padding: 5px 1.5em;
+	text-decoration: none;
+	margin-left : -15px;
+	width:112px;
+	text-shadow: none;
+}
+#banner nav a:hover, #banner nav a:active,
+#banner nav .active a:link, #banner nav .active a:visited {
+	background: -moz-linear-gradient(top,#eeb400, #dd8800);
+	color: #000;
+	text-shadow: none !important;
+
+}
+
+#banner nav li:first-child a {
+	border-top-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+
+	border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+#banner nav li:last-child a {
+	border-top-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+
+	border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+figure
+{
+
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+
+
+}
+#contenu
+{
+width: 960px;
+
+margin : auto;
+}
+.hasard
+{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+background: -moz-linear-gradient(top, #b6d10d,#559900);
+
+float :left;
+width: 600px;
+height : 245px;
+
+}
+.top
+{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+background: -moz-linear-gradient(top, #b6d10d,#559900);
+margin-top: 8px;
+float :left;
+width: 600px;
+height : 245px;
+}
+.sortie
+{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+background: -moz-linear-gradient(top, #b6d10d,#559900);
+
+margin-left : 610px;
+
+height : 500px;
+width: 350px;
+}
+#news
+{
+	background: -moz-linear-gradient(top, #b6d10d,#559900);
+	margin: 0 auto 0 auto;
+	
+	margin-top : 40px;
+	overflow: hidden;
+	padding: 20px;
+	width: 920px;
+	border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-webkit-border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-right-radius: 10px;
+}
+
