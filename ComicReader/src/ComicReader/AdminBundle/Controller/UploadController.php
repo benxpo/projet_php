@@ -25,16 +25,18 @@ class UploadController extends Controller
 	$form = $this->createFormBuilder($defaultData)
 		->add('author_name', 'text')
 		->add('manga_name', 'text')
+		->add('description', 'textarea')
 		->add('zip_file', 'file')
 		->getForm();
 	
         if ($request->getMethod() == 'POST')
 	{
 		$form->bindRequest($request);
-		print_r($_FILES);echo "<br /><br />";
+		
 		$data = $form->getData();
 		$author = $data['author_name'];
 		$manga = $data['manga_name'];
+		$description = $data['description'];
 		$filename = $data['zip_file'];
 		//$filename = $_FILES['form']['name']['zip_file'];
 		$source = $_FILES['form']['tmp_name']['zip_file'];
@@ -42,6 +44,7 @@ class UploadController extends Controller
 		/*
 		echo "Author name : ".$author."<br />";
 		echo "Manga name : ".$manga."<br />";
+		echo "Description : ".$description."<br />";
 		echo "Zip file : ".$filename."<br />";
 		echo "File name : ".$filename."<br />";
 		echo "source path : ".$source."<br />";
@@ -61,7 +64,7 @@ class UploadController extends Controller
 		}
 		if ($isZip == false)
 		{
-			echo "Please select a Zip file";
+	//		echo "Please select a Zip file";
 			return $this->render('ComicReaderAdminBundle:Default:upload.html.twig', array('form' => $form->createView(),));
 		}
 		
@@ -69,7 +72,7 @@ class UploadController extends Controller
 		$zip = zip_open($filename);
 		if (is_resource($zip) == false)
 		{
-			echo "Unable to open the Zip file";
+	//		echo "Unable to open the Zip file";
 			return $this->render('ComicReaderAdminBundle:Default:upload.html.twig', array('form' => $form->createView(),));
 		}
 		
@@ -83,8 +86,7 @@ class UploadController extends Controller
 			$filebytes = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
 			$name = zip_entry_name($zip_entry);
 			
-			echo "Name : ".$name."<br />";
-			//echo "PNG : ".$filebytes;
+	//		echo "Name : ".$name."<br />";
 			
 			$format_png = false;
 			$format_jpg = false;
@@ -104,7 +106,7 @@ class UploadController extends Controller
 			
 			if ($format_png == false && $format_jpg === false)
 			{
-				echo " - Not a JPG nor a JPG<br />";
+	//			echo " - Not a JPG nor a JPG<br />";
 				continue;
 			}
 			
@@ -113,13 +115,13 @@ class UploadController extends Controller
 			$shortname = $temp[0];
 			if (!is_numeric($shortname))
 			{
-				echo " - Not a valid number<br />";
+	//			echo " - Not a valid number<br />";
 				continue;
 			}
 			
 			// Temporarily rename the file by its number
 			$temp_name = intval($shortname);
-			echo "--> New Name : ".$temp_name."<br />";
+	//		echo "--> New Name : ".$temp_name."<br />";
 			
 			$format_type = "png";
 			if ($format_jpg)
@@ -139,6 +141,7 @@ class UploadController extends Controller
 			{
 				if (!is_numeric($file_array[$i][0]))
 					continue;
+				
 				if (intval($file_array[$i][0]) < $min_value)
 				{
 					$min_value = intval($file_array[$i][0]);
@@ -151,9 +154,9 @@ class UploadController extends Controller
 			$nb_file += 1;
 		}
 		
-		echo "<br />New Names : <br />";
-		for ($n = 0; $n < count($file_array); ++$n)
-			echo $file_array[$n][0]."<br />";
+	//	echo "<br />New Names : <br />";
+	//	for ($n = 0; $n < count($file_array); ++$n)
+	//		echo $file_array[$n][0]."<br />";
 		
 		// Save the author in the database if he doesnt exist
 	/* TODO
@@ -177,7 +180,6 @@ class UploadController extends Controller
 		{
 			$fp = fopen($basedir."/".$author."/".$manga."/".$file_array[$n][0], 'w');
 			fwrite($fp, $file_array[$n][2]);
-			//fwrite($fp, zip_entry_read($file_array[$n][2], zip_entry_filesize($file_array[$n][2])));
 			fclose($fp);
 			
 	/* TODO
@@ -185,6 +187,7 @@ class UploadController extends Controller
 			$bdd_manga = new Book;
 			$bdd_manga->setServerPath(htmlentities($author."/".$manga));
 			$bdd_manga->setTitle(htmlentities($manga));
+			$bdd_manga->setDescription(htmlentities($description));
 			$bdd_manga->setFK_Author(htmlentities$bdd_author));
 			$em = $this->getDoctrine()->getEntityManager();
 			$em->persist($bdd_author);$em->flush();

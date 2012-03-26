@@ -27,7 +27,14 @@
 		
 	</div></div><div id="livreglob"><h2>Upload</h2>
 <form action="{{ path('comicreader_admin_upload_uploadzip') }}" method="post" enctype="multipart/form-data">
-
+		<p>
+			Cette page vous permet d'ajouter librement un nouveau manga.<br /><br />
+			Tous les champs sont obligatoires.<br /><br />
+			Le fichier Zip doit contenir toutes les images représentant chacune des pages du manga.<br /><br />
+			Les pages doivent avoir pour nom leur numero (example : 1.png, 2.png, ...)<br /><br />
+			Les formats d'image supportés sont les PNG et les JPG. Vous pouvez choisir le type de format que vous souhaitez mais toutes les images dans le fichier Zip doivent avoir le même format.<br /><br />
+			La taille du fichier Zip est limité à 50Mo.
+		</p>
 		<div style="margin-top:50px;margin-left:-20px">
 			{{ form_label(form.author_name, "Auteur") }}
    			{{ form_errors(form.author_name) }}
@@ -38,6 +45,11 @@
 				{{ form_label(form.manga_name, "Nom") }}
    			{{ form_errors(form.manga_name) }}
     		<span style="margin-left:97px;">{{ form_widget(form.manga_name) }}</span>
+</div>
+		<div style="margin-left:-20px">
+				{{ form_label(form.description, "Description") }}
+   			{{ form_errors(form.description) }}
+    		<span style="margin-left:97px;">{{ form_widget(form.description) }}</span>
 </div>
 				<br/>
 		<div style="margin-left:70px">
