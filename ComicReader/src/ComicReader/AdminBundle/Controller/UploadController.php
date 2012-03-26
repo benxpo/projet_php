@@ -159,16 +159,21 @@ class UploadController extends Controller
 	//		echo $file_array[$n][0]."<br />";
 		
 		// Save the author in the database if he doesnt exist
-	/* TODO
-		$bdd_author = "SELECT * FROM ........";
+		
+		$bdd_author = $this->getDoctrine()
+				->getEntityManager()
+				->getRepository('ComicReaderAdminBundle:Author')
+				 ->findByName($author);
+    
 		if ($bdd_author == NULL)
 		{
 			$bdd_author = new Author;
 			$bdd_author->setName(htmlentities($author));
 			$em = $this->getDoctrine()->getEntityManager();
-			$em->persist($bdd_author);$em->flush();
+			$em->persist($bdd_author);
+			$em->flush();
 		}
-	*/		
+		
 		// Create the directory and save the files
 		$basedir = __DIR__."/../../../../web/bundles/books";
 		if (!is_dir($basedir."/".$author))
@@ -182,16 +187,15 @@ class UploadController extends Controller
 			fwrite($fp, $file_array[$n][2]);
 			fclose($fp);
 			
-	/* TODO
 			// Save the manga in the database
 			$bdd_manga = new Book;
 			$bdd_manga->setServerPath(htmlentities($author."/".$manga));
 			$bdd_manga->setTitle(htmlentities($manga));
 			$bdd_manga->setDescription(htmlentities($description));
-			$bdd_manga->setFK_Author(htmlentities$bdd_author));
+			$bdd_manga->setFK_Author(intval($bdd_author->getId()));
 			$em = $this->getDoctrine()->getEntityManager();
-			$em->persist($bdd_author);$em->flush();
-	*/
+			$em->persist($bdd_author);
+			$em->flush();
 		}
 		
 		// Close the Zip file
