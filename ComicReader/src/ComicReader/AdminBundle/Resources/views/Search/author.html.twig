@@ -10,9 +10,9 @@
 	<div id="banner"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" />
 
 		<nav><ul>
-			<li ><a class="lien" href="{{ path('ComicReader_accueil') }}">Accueil</a></li>
+			<li><a class="lien" href="{{ path('ComicReader_accueil') }}">Accueil</a></li>
 			<li class="active"><a class="lien" href="{{ path('ComicReader_liste') }}">Liste</a></li>
-			<li ><a class="lien" href="{{ path('ComicReader_ajout') }}"><p style="margin-top: -2px">Ajouter</p></a></li></ul></nav>
+			<li><a class="lien" href="{{ path('ComicReader_ajout') }}"><p style="margin-top: -2px">Ajouter</p></a></li></ul></nav>
 			<div id="rech">
 				<div style="margin-top: 7px;">
 				    <form method="POST" action="{{ asset('search_redirect.php') }} ">
@@ -37,7 +37,7 @@
 {% for star in fjb.stars %}
 		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
-		<em>No mark</em>
+		<em></em>
 {% endfor %}
 	      </div>
 	      <h3 style="text-align: left;"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></h3>

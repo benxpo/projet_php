@@ -2,7 +2,7 @@
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/index.css') }}">
-	<title>Search - {{ searchvalue }}</title>
+	<title>Reacherche - {{ searchvalue }}</title>
     </head>
     <body>
   <img src="{{ asset('bundles/comicreaderdesign/images/fond.jpg') }}" style="position:fixed; left: 0px; top:0px; z-index:-1;width: 100%;"/>
@@ -24,20 +24,20 @@
 			</div>
 		
 	</div></div><div id="livreglob">
-	    <h2>Search for {{ searchvalue }}</h2>
+	    <h2>Recherche : "{{ searchvalue }}"</h2>
 	    
 <!-- Authors -->
-	    <h4>Authors</h4>
+	    <h4>Auteurs</h4>
 {% for author in authors %}
 	    <div class="search_item" >
 		<h5><a href="{{ asset('app_dev.php/author/' ~ author.id) }}">{{ author.name }}</a></h5>
 	    </div>
 {% else %}
-	    <em>No authors found</em>
+	    <em>Aucun auteur correspondant</em>
 {% endfor %}
 
 <!-- Books -->
-	    <h4>Books</h4>
+	    <h4>Livres</h4>
 {% for fjb in books %}
 	  <div style="border: 1px solid black; margin-bottom: 5px; margin-left: 50px; margin-right: 50px; height: 170px;">
 	    <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
@@ -48,7 +48,7 @@
 {% for star in fjb.stars %}
 		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
-		<em>No mark</em>
+		<em></em>
 {% endfor %}
 	      </div>
 	      <h3 style="text-align: left;"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></h3>
@@ -57,7 +57,7 @@
 	    </div>
 	  </div>
 {% else %}
-	<em>No result</em>
+	<em>Aucun livre correspondant</em>
 {% endfor %}
     </body>
 </html>    
