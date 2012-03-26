@@ -24,7 +24,7 @@
 		
 	</div></div>
     
-	<div class="book_list">
+	<div id="livreglob">
 	    <h1>{{ authorname }}</h1>
 
 {% for fjb in books %}
@@ -37,12 +37,12 @@
 {% for star in fjb.stars %}
 		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
-		<em>No mark</em>
+		<em></em>
 {% endfor %}
 	      </div>
-	      <div class="livreNom"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></div>
-	      <div class="livreAuteur"><u>Draw by</u> : {{ fjb.author.Name }}</div>
-	      <div class="livreDesc"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Description}}</a></div>
+	      <div class="livreNom" style="text-align:left; padding-left : 10px"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} > <h4>{{ fjb.book.Title }}</h4></a></div>
+
+	      <div class="livreDesc" style="font-size : 14px;text-align:left; padding-left : 10px; margin-top: 10px"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Description}}</a></div>
 	    </div>
 	  </div>
 {% endfor %}
