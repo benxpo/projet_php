@@ -164,6 +164,7 @@ class UploadController extends Controller
 				->getEntityManager()
 				->getRepository('ComicReaderAdminBundle:Author')
 				 ->findByName($author);
+		
 		if ($bdd_author == NULL)
 		{
 			$bdd_author = new Author;
@@ -185,22 +186,23 @@ class UploadController extends Controller
 			$fp = fopen($basedir."/".$author."/".$manga."/".$file_array[$n][0], 'w');
 			fwrite($fp, $file_array[$n][2]);
 			fclose($fp);
-			
-			// Save the manga in the database
-			$bdd_manga = new Book;
-			$bdd_manga->setServerPath(htmlentities($author."/".$manga));
-			$bdd_manga->setTitle(htmlentities($manga));
-			$bdd_manga->setDescription(htmlentities($description));
-			$bdd_manga->setFK_Author(intval($bdd_author->getId()));
-			$em = $this->getDoctrine()->getEntityManager();
-			$em->persist($bdd_author);
-			$em->flush();
 		}
+		
+		// Save the manga in the database
+		$bdd_manga = new Book;
+		$bdd_manga->setServerPath(htmlentities($author."/".$manga));
+		$bdd_manga->setTitle(htmlentities($manga));
+		$bdd_manga->setValidated(false);
+		$bdd_manga->setDescription(htmlentities($description));
+		$bdd_manga->setFK_Author(intval($bdd_author->getId()));
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($bdd_author);
+		$em->flush();
 		
 		// Close the Zip file
 		zip_close($zip);
 		
-		return $this->redirect('./ComicReader');
+	//	return $this->redirect('./ComicReader');
         }
 	
         return $this->render('ComicReaderAdminBundle:Default:upload.html.twig', array('form' => $form->createView(),));
