@@ -103,6 +103,8 @@ class T_User
      */
     public function getLogin()
     {
+	if ($this->Login == "" || $this->Login == null)
+		return "bob";
         return $this->Login;
     }
 

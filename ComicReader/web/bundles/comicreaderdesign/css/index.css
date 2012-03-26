@@ -210,5 +210,18 @@ width: 350px;
 	width: 920px;
 }
 
+		a {outline: 0;}
+		a img {border: 0px; text-decoration: none;}
+		a:link, a:visited {
+			color: black;
+			padding: 0 1px;
+			text-decoration: none;
+		}
+		a:hover, a:active {
+			background-color: #eeb400;
+			color: #fff;
+			text-decoration: none;
+			text-shadow: 1px 1px 1px #333;
+		}
 
 

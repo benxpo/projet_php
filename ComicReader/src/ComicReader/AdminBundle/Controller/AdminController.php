@@ -167,7 +167,6 @@ class AdminController extends Controller
 
 		return array('tab' => $tab);
 	}
-
     /**
      * @Route("/delC/{id}")
      */

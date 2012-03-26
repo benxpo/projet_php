@@ -2,9 +2,9 @@
 <html>
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/design.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/index.css') }}">
 	<title>{{ book.Title }} - {{ bookauthor }}</title>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="{{asset('bundles/js/jquery.js')}}"></script>
         <script type="text/javascript">
 $(document).ready(
     function()
@@ -56,8 +56,6 @@ $(document).ready(
 		
 	</div></div><div id="livreglob">
 
-	<div id="retour"><a href="javascript:history.go(-1)">Retourner a la liste des livres</a></div>
-
 	  <div class="livre">
     	    <div class="livreImage" style="background: url('{{ asset('bundles/books/' ~ thumbnail) }}') no-repeat top center;"></div>
 	    <div class="livreinfos"> 
@@ -65,39 +63,17 @@ $(document).ready(
 {% for star in stars %}
 		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
-		<em>No mark</em>
+		<em></em>
 {% endfor %}
 	      </div>
-	      <div class="livreNom">{{ book.Title }}</div>
-	      <div class="livreAuteur"><u>Draw by</u> : <a href="{{ asset('app_dev.php/author/' ~ book.FK_Author) }}">{{ bookauthor }}</a></div>
-	      <div class="livrePseudo"><u>Uploaded by</u> : {{ uploader }}</div>
-	      <div class="livreDesc">{{ book.Description}}</div>
+	      <div class="livreNom" style="text-align:left; padding-left : 10px"><h3>{{ book.Title }}</h3></div>
+	      <div class="livreAuteur" style="text-align:left; margin-top: -12px; padding-left : 30px"><em><a href="{{ asset('app_dev.php/author/' ~ book.FK_Author) }}">{{ bookauthor }}</a></em></div>
+
+	      <div class="livreDesc" style="font-size : 14px;text-align:left; padding-left : 10px; margin-top: 10px">{{ book.Description}}</div>
 	    </div>
 	  </div>
-	  
-	  
-<!-- Comments -->
-{% for c in comments %}
-	<div class="a_comment">
-	    <h4>{{ c.Name }}</h4>
-	    <div class="a_comment_mark">
-		{{ c.Mark }}
-	    </div>
-	    <p>
-		{{ c.Comment }}
-	    </p>
-{% else %}
-	    <em>No comment. Be the first to post one ?</em>
-{% endfor %}
 	</div>
-	<div>
-		<form action="{{ asset('app_dev.php/addComent') }}" method="post" enctype="multipart/form-data">
-			{{ form_widget(form) }}
-
-			<input type="submit" />
-		</form>
-	</div>
-	  
+	  <br/>
 	  <!-- Start reading ... -->
 {% for page in pages %}
 	    <div id="{{ page.id }}" class="comic_image_box" >
