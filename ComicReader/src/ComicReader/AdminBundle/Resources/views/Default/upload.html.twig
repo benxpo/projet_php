@@ -27,39 +27,60 @@
 		
 	</div></div><div id="livreglob"><h2>Upload</h2>
 <form action="{{ path('comicreader_admin_upload_uploadzip') }}" method="post" enctype="multipart/form-data">
-		<p>
-			Cette page vous permet d'ajouter librement un nouveau manga.<br /><br />
-			Tous les champs sont obligatoires.<br /><br />
-			Le fichier Zip doit contenir toutes les images représentant chacune des pages du manga.<br /><br />
-			Les pages doivent avoir pour nom leur numero (example : 1.png, 2.png, ...)<br /><br />
-			Les formats d'image supportés sont les PNG et les JPG. Vous pouvez choisir le type de format que vous souhaitez mais toutes les images dans le fichier Zip doivent avoir le même format.<br /><br />
-			La taille du fichier Zip est limité à 50Mo.
-		</p>
+		<div style="
+			border : 2px black solid;
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			margin:auto;
+			margin-top : 50px;
+			font-size:15px; width: 80%;text-align:left; padding:20px; background:#fff
+			
+			">
+			<h4>Cette page vous permet d'ajouter librement un nouveau manga.</h4><br />
+			<u>Cependant quelques règles sont à respecter :</u><br/>
+			<UL> 
+			<li>Tous les champs sont obligatoires.<br />
+			<li>Le fichier Zip doit contenir toutes les images représentant chacune des pages du livre.<br />
+			<li>Les pages doivent avoir pour nom leur numero (exemple : 1.png, 2.png, ...)<br />
+			<li>Les formats d'image supportés sont les PNG et les JPG.<br /> Vous pouvez choisir le type de format que vous souhaitez mais toutes les images dans le fichier Zip doivent avoir le même format.<br />
+			<li>La taille du fichier Zip est limité à 50Mo.
+			</UL> 
+		</div><div style="
+			border : 2px black solid;
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			margin:auto;
+			margin-top : 50px;
+			width: 80%; padding:20px; background:#fff
+			
+			" >
 		<div style="margin-top:50px;margin-left:-20px">
-			{{ form_label(form.author_name, "Auteur") }}
+			{{ form_label(form.author_name, "Auteur :") }}
    			{{ form_errors(form.author_name) }}
     		<span style="margin-left:80px;">{{ form_widget(form.author_name) }}</span>
 				</div>
 				<br/>
 		<div style="margin-left:-20px">
-				{{ form_label(form.manga_name, "Nom") }}
+				{{ form_label(form.manga_name, "Nom :") }}
    			{{ form_errors(form.manga_name) }}
     		<span style="margin-left:97px;">{{ form_widget(form.manga_name) }}</span>
-</div>
-		<div style="margin-left:-20px">
-				{{ form_label(form.description, "Description") }}
+</div><br/>
+		<div style="margin-left:-95px">
+				{{ form_label(form.description, "Description :") }}
    			{{ form_errors(form.description) }}
-    		<span style="margin-left:97px;">{{ form_widget(form.description) }}</span>
+    		<span style="margin-left:45px;">{{ form_widget(form.description) }}</span>
 </div>
-				<br/>
-		<div style="margin-left:70px">
-			{{ form_label(form.zip_file, "Fichier ZIP") }}
+				<br/><br/>
+		<div style="margin-left:80px">
+			{{ form_label(form.zip_file, "Fichier ZIP :") }}
    			{{ form_errors(form.zip_file) }}
-    		<span style="margin-left:50px;">{{ form_widget(form.zip_file) }}</span></div>
+    		<span style="margin-left:45px;">{{ form_widget(form.zip_file) }}</span></div>
 				<br/>
 <br/><br/>
     <input type="submit" value="&nbsp;Upload&nbsp;" />
-</form>
+</form></div>
 	</div>
     </body>
 </html>
