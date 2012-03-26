@@ -28,68 +28,11 @@ div {
 	}
 
 
-<<<<<<< HEAD
 //modif BEn
 #banner {
 	margin: 0 auto;
 
 	padding: 2.5em 0 0 0;
-=======
-div.hasard {
-	overflow: auto;
-	background-color:white;
-	border-width: 1px; border-style: solid; border-color: #000000;
-	width:25%;
-	height:100%;
-	float:left;
-	}
-div.hasard a {
-	border: none;
-	text-decoration: none;
-	color: black;
-}
-div.hasardTitre {
-	font-size: 1.5em;
-	margin-top:13px;
-	margin-bottom:30px;
-	font-family:arial;
-	color: #1234c9;
-	text-shadow: 1px 1px 1px #333;
-	width:100%;
-	height:10%;
-	border-bottom-style:solid;
-	border-bottom-color:#000000;
-	border-bottom-width:1px;
-	}
-div.hasardNom {
-	width:100%;
-	height:10%;
-	}
-div.hasardNote {
-	width:100%;
-	height:10%;
-	}
-div.randomThumbnail {
-	width:100%;
-	height:35%;
-	}
-div.hasardAuteur {
-	width:100%;
-	height:10%;
-	}
-div.hasardPseudo {
-	width:100%;
-	height:10%;
-	}
-div.top5Numero {
-	width:100%;
-	height:10%;
-	text-align:left;
-	}
-div.videok{
-	height:0px;
-	width:0px;
->>>>>>> 4b4bbc925ffc47a8b24adc60ac41a79b2f6bc180
 }
 
 	/* Banner */
@@ -253,4 +196,5 @@ width: 350px;
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-right-radius: 10px;
 }
+
 
