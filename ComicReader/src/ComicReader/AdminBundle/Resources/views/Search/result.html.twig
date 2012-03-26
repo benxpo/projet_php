@@ -39,21 +39,21 @@
 <!-- Books -->
 	    <h4>Books</h4>
 {% for fjb in books %}
-	  <div class="livre">
+	  <div style="border: 1px solid black; margin-bottom: 5px; margin-left: 50px; margin-right: 50px; height: 170px;">
 	    <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
-    	    <div class="livreImage" style="background: url('{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '1.png') }}') no-repeat top center;"></div>
+		<img style="width:100px; float:left; margin: 10px;" src="{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '1.png') }}" alt=""/>
 	    </a>
-	    <div class="livreinfos"> 
-	      <div class="livreNote">
+	    <div class="livreinfos" style="margin-left: 120px; margin-right: 10px;"> 
+	      <div style="float: right; margin-top: -10px;">
 {% for star in fjb.stars %}
 		<img src="{{ asset('bundles/reader/images/' ~ star ~ '.png') }}" alt="*" />
 {% else %}
 		<em>No mark</em>
 {% endfor %}
 	      </div>
-	      <div class="livreNom"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></div>
-	      <div class="livreAuteur"><u>Draw by</u> : <a href="{{ asset('app_dev.php/author/' ~ fjb.book.FK_Author) }}">{{ fjb.author.Name }}</a></div>
-	      <div class="livreDesc"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Description}}</a></div>
+	      <h3 style="text-align: left;"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Title }}</a></h3>
+	      <div style="text-align: left;"><a href="{{ asset('app_dev.php/author/' ~ fjb.book.FK_Author) }}"><em>{{ fjb.author.Name }}</em></a></div>
+	      <div style="text-align: left; margin-top: 10px;"><a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >{{ fjb.book.Description}}</a></div>
 	    </div>
 	  </div>
 {% else %}
