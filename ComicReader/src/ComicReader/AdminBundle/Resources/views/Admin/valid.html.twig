@@ -72,10 +72,10 @@ width : 175px;
 
 
 <table border="2" align="center" width="700" cellspacing="1px" >
-<tr><td><b>Nom</b></td><td><b>Validation</b></td><td><b>Suppression</b></td></tr>
+<tr><td><b>Nom</b></td> <td><b>Validation</b></td> <td><b>Suppression</b></td></tr>
 {% for c in tab %}
-<tr><td>
-{{c.Title}}</td><td>
+<tr>
+<td>{{c.Title}}</td>
 <td><a href="{{ asset('app_dev.php/valB/' ~ c.Id) }}">Valider</a></td>
 <td><a href="{{ asset('app_dev.php/delB/' ~ c.Id) }}">Supprimer</a></td></tr>
 {%endfor %}

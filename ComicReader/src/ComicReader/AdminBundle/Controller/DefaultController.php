@@ -46,6 +46,35 @@ class DefaultController extends Controller
             array_push($pages, array('id' => $i, 'path' => $path));
         }
 
+	/* Post comment 
+	$form = $this->createFormBuilder(array())
+		->add('login', 'text')
+		->add('mark', 'text')
+		->add('comment', 'textarea')
+		->getForm();
+
+	if ($request->getMethod() == 'POST')
+	{
+		$form->bindRequest($request);
+		$data = $form->getData();
+		
+		$logincom = htmlentities($data['login']);
+		$mark = htmlentities($data['mark']);
+		$comment = htmlentities($data['comment']);
+
+		//ajout du comment ici
+		$com = new Mark();
+		$com->setComment($comment);
+		$com->setMark($mark);
+		$com->setName($logincom);
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($com);
+		$em->flush();
+		
+	}
+	 End post comment*/
+
         // get mark and comment
         $comments = $this->getDoctrine()
                          ->getEntityManager()
@@ -77,43 +106,15 @@ class DefaultController extends Controller
                             ->getRepository('ComicReaderAdminBundle:T_User')
                             ->find($book->getFK_User());
 
-	/* Post comment */
-	$form = $this->createFormBuilder(array())
-		->add('login', 'text')
-		->add('mark', 'text')
-		->add('comment', 'textarea')
-		->getForm();
-
-	if ($request->getMethod() == 'POST')
-	{
-		$form->bindRequest($request);
-		$data = $form->getData();
-		
-		$login = htmlentities($date['login']);
-		$mark = htmlentities($date['mark']);
-		$comment = htmlentities($date['comment']);
-
-		//ajout du comment ici
-		$com = new Mark();
-		$com->setComment($comment);
-		$com->setMark($mark);
-
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($com);
-		$em->flush();
-	}
-	/* End post comment */
-
         
         return $this->render('ComicReaderAdminBundle:Default:reader.html.twig',
                              array('book' => $book,
                                    'thumbnail' => sprintf("%s01.png", $book->getServerPath()),
-                                   'bookauthor' => $author->getName(),
-                                   'uploader' => $uploader->getLogin(),
+                                   'bookauthor' => $author->getName(),                         
                                    'stars' => $stars,
                                    'pages' => $pages,
                                    'comments' => $comments,
-				   'form' => $form->createView()));
+				   ));
     }
     
     
