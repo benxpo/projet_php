@@ -7,7 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
-use ComicReader\AdminBundle\Stuff\ZipHandler;
+use ComicReader\AdminBundle\Entity\Author;
+use ComicReader\AdminBundle\Entity\Book;
 
 class UploadController extends Controller
 {
@@ -159,12 +160,10 @@ class UploadController extends Controller
 	//		echo $file_array[$n][0]."<br />";
 		
 		// Save the author in the database if he doesnt exist
-		
 		$bdd_author = $this->getDoctrine()
 				->getEntityManager()
 				->getRepository('ComicReaderAdminBundle:Author')
 				 ->findByName($author);
-    
 		if ($bdd_author == NULL)
 		{
 			$bdd_author = new Author;
@@ -200,6 +199,8 @@ class UploadController extends Controller
 		
 		// Close the Zip file
 		zip_close($zip);
+		
+		return $this->redirect('./ComicReader');
         }
 	
         return $this->render('ComicReaderAdminBundle:Default:upload.html.twig', array('form' => $form->createView(),));
