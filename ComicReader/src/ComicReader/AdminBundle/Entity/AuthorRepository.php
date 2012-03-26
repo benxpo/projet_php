@@ -23,4 +23,20 @@ class AuthorRepository extends EntityRepository
     
         return $qb->getQuery()->getResult();
     }
+    
+    public function findByName($name)
+    {
+        $qb = $this->_em->createQueryBuilder();
+    
+        $qb->select('a')
+            ->from('ComicReaderAdminBundle:Author', 'a')
+            ->where('a.Name = :name')
+            ->setParameter('name', '%'.$name.'%');
+    
+        $result = $qb->getQuery()->getResult();
+        if ($result != null)
+            return $result[0];
+        else
+            return null;
+    }
 }
