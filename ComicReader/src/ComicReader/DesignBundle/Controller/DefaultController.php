@@ -189,18 +189,20 @@ class DefaultController extends Controller
 	       if ($third != null)
 	       {
 		    $topfullJoinBooks[2] = $third;
+		    /*
 		    if ($fourth != null)
 		    {
 			$topfullJoinBooks[3] = $fourth;
 			if ($fifth != null)
 			    $topfullJoinBooks[4] = $fifth;
 		    }
+		    */
 	       }
 	    }
 	}
  
 	return $this->render('ComicReaderDesignBundle:Index:'.$name.'.html.twig',
-                             array('random' => $random,
+                             array('randombooks' => array($random),
 				   'topbooks' => $topfullJoinBooks,
 				   'lastbooks' => $lastfullJoinBooks));
     }
