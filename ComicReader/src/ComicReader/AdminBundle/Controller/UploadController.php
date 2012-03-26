@@ -49,7 +49,7 @@ class UploadController extends Controller
 		*/
 		// Check if the uploaded file is a Zip file
 		$zip_types = array('application/zip', 'application/x-zip-compressed',
-				'multipart/x-zip', 'application/s-compressed');  
+				'multipart/x-zip', 'application/s-compressed');
 		$isZip = false;
 		foreach ($zip_types as $list_type)
 		{
@@ -161,7 +161,7 @@ class UploadController extends Controller
 		if ($bdd_author == NULL)
 		{
 			$bdd_author = new Author;
-			$bdd_author->setName($author);
+			$bdd_author->setName(htmlentities($author));
 			$em = $this->getDoctrine()->getEntityManager();
 			$em->persist($bdd_author);$em->flush();
 		}
@@ -177,14 +177,15 @@ class UploadController extends Controller
 		{
 			$fp = fopen($basedir."/".$author."/".$manga."/".$file_array[$n][0], 'w');
 			fwrite($fp, $file_array[$n][2]);
+			//fwrite($fp, zip_entry_read($file_array[$n][2], zip_entry_filesize($file_array[$n][2])));
 			fclose($fp);
 			
 	/* TODO
 			// Save the manga in the database
 			$bdd_manga = new Book;
-			$bdd_manga->setServerPath($author."/".$manga);
-			$bdd_manga->setTitle($manga);
-			$bdd_manga->setFK_Author($bdd_author);
+			$bdd_manga->setServerPath(htmlentities($author."/".$manga));
+			$bdd_manga->setTitle(htmlentities($manga));
+			$bdd_manga->setFK_Author(htmlentities$bdd_author));
 			$em = $this->getDoctrine()->getEntityManager();
 			$em->persist($bdd_author);$em->flush();
 	*/
