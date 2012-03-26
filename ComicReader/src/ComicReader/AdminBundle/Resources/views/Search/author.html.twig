@@ -28,7 +28,9 @@
 	    <h1>{{ authorname }}</h1>
 
 {% for fjb in books %}
-	  <div style="border: 1px solid black; margin-bottom: 5px; margin-left: 50px; margin-right: 50px; height: 170px;">
+	  <div style="	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;border: 1px solid black; margin-bottom: 5px; margin-left: 50px; margin-right: 50px; height: 170px;">
 	    <a href={{ asset('app_dev.php/reader/' ~ fjb.book.id) }} >
 		<img style="width:100px; float:left; margin: 10px;" src="{{ asset('bundles/books/' ~ fjb.book.ServerPath ~ '1.png') }}" alt=""/>
 	    </a>
