@@ -1,5 +1,66 @@
-<form action="{{ path('comicreader_admin_upload_uploadzip') }}" method="post" enctype="multipart/form-data">
-    {{ form_widget(form) }}
 
-    <input type="submit" />
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/comicreaderdesign/css/index.css') }}">
+	<title>Upload</title>
+    </head>
+    <body>
+  <img src="{{ asset('bundles/comicreaderdesign/images/fond.jpg') }}" style="position:fixed; left: 0px; top:0px; z-index:-1;width: 100%;"/>
+  <div id="main">
+
+	
+		<div id="banner"><img alt="ComicReader" src="{{ asset('bundles/comicreaderdesign/images/ban.jpg') }}" />
+
+		<nav><ul>
+			<li ><a class="lien" href="{{ path('ComicReader_accueil') }}">Accueil</a></li>
+			<li ><a class="lien" href="{{ path('ComicReader_liste') }}">Liste</a></li>
+			<li class="active"><a class="lien" href="{{ path('ComicReader_ajout') }}"><p style="margin-top: -2px">Ajouter</p></a></li></ul></nav>
+			<div id="rech">
+				<div style="margin-top: 7px;">
+				    <form method="POST" action="{{ asset('search_redirect.php') }} ">
+				      <input name="search" value="" size="20" maxlength="255" onFocus="this.value=''" />
+				      <input type="submit" value="Chercher" />
+				    </form>
+				</div>
+			</div>
+		
+	</div></div><div id="livreglob"><h2>Upload</h2>
+<form action="{{ path('comicreader_admin_upload_uploadzip') }}" method="post" enctype="multipart/form-data">
+		<p>
+			Cette page vous permet d'ajouter librement un nouveau manga.<br /><br />
+			Tous les champs sont obligatoires.<br /><br />
+			Le fichier Zip doit contenir toutes les images représentant chacune des pages du manga.<br /><br />
+			Les pages doivent avoir pour nom leur numero (example : 1.png, 2.png, ...)<br /><br />
+			Les formats d'image supportés sont les PNG et les JPG. Vous pouvez choisir le type de format que vous souhaitez mais toutes les images dans le fichier Zip doivent avoir le même format.<br /><br />
+			La taille du fichier Zip est limité à 50Mo.
+		</p>
+		<div style="margin-top:50px;margin-left:-20px">
+			{{ form_label(form.author_name, "Auteur") }}
+   			{{ form_errors(form.author_name) }}
+    		<span style="margin-left:80px;">{{ form_widget(form.author_name) }}</span>
+				</div>
+				<br/>
+		<div style="margin-left:-20px">
+				{{ form_label(form.manga_name, "Nom") }}
+   			{{ form_errors(form.manga_name) }}
+    		<span style="margin-left:97px;">{{ form_widget(form.manga_name) }}</span>
+</div>
+		<div style="margin-left:-20px">
+				{{ form_label(form.description, "Description") }}
+   			{{ form_errors(form.description) }}
+    		<span style="margin-left:97px;">{{ form_widget(form.description) }}</span>
+</div>
+				<br/>
+		<div style="margin-left:70px">
+			{{ form_label(form.zip_file, "Fichier ZIP") }}
+   			{{ form_errors(form.zip_file) }}
+    		<span style="margin-left:50px;">{{ form_widget(form.zip_file) }}</span></div>
+				<br/>
+<br/><br/>
+    <input type="submit" value="&nbsp;Upload&nbsp;" />
 </form>
+	</div>
+    </body>
+</html>
+
